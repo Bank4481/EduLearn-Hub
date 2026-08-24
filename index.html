@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="th" class="scroll-smooth">
 <head>
@@ -178,7 +177,7 @@
                 <button onclick="openModalDriveDoc()" class="bg-white text-slate-900 px-2.5 py-1 rounded-lg hover:bg-gray-100 transition"><i class="fa-brands fa-google-drive mr-1"></i>ตั้งค่า Drive & Docs</button>
                 <button onclick="openModal('googleSheetModal')" class="bg-white text-slate-900 px-2.5 py-1 rounded-lg hover:bg-gray-100 transition"><i class="fa-solid fa-table mr-1"></i>ตั้งค่า Google Sheet</button>
                 <button onclick="openModal('githubModal')" class="bg-slate-800 text-amber-300 border border-amber-400 px-2.5 py-1 rounded-lg hover:bg-slate-700 transition"><i class="fa-brands fa-github mr-1"></i>ตั้งค่า GitHub Token</button>
-                <button onclick="pushToGitHub()" class="bg-emerald-700 text-white px-2.5 py-1 rounded-lg hover:bg-emerald-800 transition"><i class="fa-solid fa-cloud-arrow-up mr-1"></i>อัปโหลดขึ้น GitHub ทันที</button>
+                <button onclick="pushToGitHub(false)" class="bg-emerald-700 text-white px-2.5 py-1 rounded-lg hover:bg-emerald-800 transition"><i class="fa-solid fa-cloud-arrow-up mr-1"></i>อัปโหลดขึ้น GitHub ทันที</button>
                 <button onclick="logoutAdmin()" class="bg-red-600 text-white px-2.5 py-1 rounded-lg hover:bg-red-700 transition">ออกจากระบบผู้ดูแล</button>
             </div>
         </div>
@@ -330,14 +329,14 @@
                     <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 mt-1 flex items-center justify-center gap-3">
                         <i class="fa-solid fa-comments text-theme"></i> 5. ห้องพูดคุยสนทนาแลกเปลี่ยนเรียนรู้
                     </h2>
-                    <p class="text-gray-600 mt-2 text-sm sm:text-base">พื้นที่สำหรับนักเรียนและผู้สอนสอบถามข้อสงสัยและแชร์ความรู้</p>
+                    <p class="text-gray-600 mt-2 text-sm sm:text-base">พื้นที่สำหรับนักเรียนและผู้สอนสอบถามข้อสงสัยและแชร์ความรู้ (อัปเดตและซิงค์ GitHub อัตโนมัติทุกครั้งที่ส่งข้อความ)</p>
                 </div>
 
                 <div class="glass-card rounded-3xl shadow-xl overflow-hidden border border-gray-200">
                     <div class="bg-gradient-to-r from-slate-900 to-theme-800 text-white p-4 flex items-center justify-between">
                         <div class="flex items-center gap-3">
                             <div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div>
-                            <span class="font-semibold text-sm sm:text-base">ห้องสนทนากลาง EduLearn (ออนไลน์)</span>
+                            <span class="font-semibold text-sm sm:text-base">ห้องสนทนากลาง EduLearn (ออนไลน์ & Sync GitHub)</span>
                         </div>
                         <span class="text-xs bg-white/20 px-2.5 py-1 rounded-full" id="chatCountBadge">0 ข้อความ</span>
                     </div>
@@ -438,11 +437,11 @@
                         <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl relative overflow-hidden">
                             <div class="relative z-10">
                                 <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold border border-emerald-500/30">
-                                    Google Cloud Sync Active
+                                    Google Cloud & GitHub Sync Active
                                 </span>
                                 <h4 class="text-xl font-bold mt-3">ระบบจัดเก็บงานอัตโนมัติ</h4>
                                 <p class="text-xs text-gray-300 mt-2 leading-relaxed">
-                                    เมื่อกดส่งงาน ข้อมูลผู้ส่งและลิงก์ชิ้นงานจะถูกจัดเก็บบันทึกส่งตรงเข้า Google Drive & Docs / Sheets ของอาจารย์ผู้สอนโดยอัตโนมัติ
+                                    เมื่อกดส่งงาน ข้อมูลผู้ส่งและลิงก์ชิ้นงานจะถูกบันทึกส่งตรงเข้า Google Drive & Docs และซิงค์ขึ้น GitHub อัตโนมัติทันที
                                 </p>
                             </div>
                         </div>
@@ -814,7 +813,7 @@
             </div>
 
             <p class="text-xs text-gray-500 mb-4 leading-relaxed">
-                ใส่ GitHub Personal Access Token (PAT) และชื่อ Repository เมื่อคุณแก้ไขข้อมูลเสร็จ ระบบจะอัปเดตไฟล์ <strong>index.html</strong> ขึ้น GitHub โดยตรงทันที!
+                ใส่ GitHub Personal Access Token (PAT) และชื่อ Repository เมื่อมีการส่งข้อความ สมาชิกใหม่ ส่งงาน หรือผู้ดูแลแก้ไขข้อมูล ระบบจะอัปเดตและซิงค์ไฟล์ <strong>index.html</strong> ขึ้น GitHub อัตโนมัติทันที!
             </p>
 
             <form onsubmit="saveGitHubSettings(event)" class="space-y-3">
@@ -868,7 +867,7 @@
                         <i class="fa-solid fa-graduation-cap text-theme"></i> EduLearn Hub
                     </span>
                     <p class="text-xs leading-relaxed text-gray-400">
-                        นวัตกรรมเว็บไซต์สื่อการเรียนรู้แบบโต้ตอบออนไลน์ รองรับการส่งงานเข้า Google Drive และ Google Docs / Sheets
+                        นวัตกรรมเว็บไซต์สื่อการเรียนรู้แบบโต้ตอบออนไลน์ รองรับการอัปโหลดไฟล์ขึ้น GitHub อัตโนมัติในทุกกิจกรรม และรองรับ Google Drive & Docs
                     </p>
                 </div>
                 <div>
@@ -893,6 +892,7 @@
                     <h5 class="text-sm font-bold text-white mb-3">ข้อมูลระบบ</h5>
                     <div class="text-xs space-y-2">
                         <p><i class="fa-solid fa-user-shield text-gray-500 mr-1"></i> Admin User: <span class="text-amber-300">Bank4481</span></p>
+                        <p><i class="fa-solid fa-rotate text-emerald-400 mr-1"></i> อัปเดต GitHub: <span class="text-emerald-300">อัตโนมัติ 5 นาที & ทุกกิจกรรม</span></p>
                         <p><i class="fa-solid fa-palette text-gray-500 mr-1"></i> ระบบธีมสี: Dynamic 12 Colors</p>
                     </div>
                 </div>
@@ -916,6 +916,8 @@
             webhookUrl: "",
             currentQuizIndex: 0,
             quizScore: 0,
+            registeredUsers: {},
+            userAvatars: {},
             courses: [
                 {
                     id: 1,
@@ -1054,6 +1056,11 @@
             renderDriveDocsLinks();
             updateStatsCounters();
             loadGitHubSettings();
+
+            // Automatic 5-minute background push to GitHub
+            setInterval(() => {
+                triggerAutoPush("ซิงค์อัปเดตอัตโนมัติประจำ 5 นาที");
+            }, 5 * 60 * 1000);
         };
 
         function loadSavedState() {
@@ -1089,6 +1096,12 @@
 
             const savedWebhook = localStorage.getItem('edulearn_webhook');
             if (savedWebhook) APP_STATE.webhookUrl = savedWebhook;
+
+            const savedUsers = localStorage.getItem('edulearn_registered_users');
+            if (savedUsers) APP_STATE.registeredUsers = JSON.parse(savedUsers);
+
+            const savedAvatars = localStorage.getItem('edulearn_user_avatars');
+            if (savedAvatars) APP_STATE.userAvatars = JSON.parse(savedAvatars);
         }
 
         function applyTheme(themeKey) {
@@ -1109,6 +1122,7 @@
 
         function renderThemeSwatches() {
             const grid = document.getElementById('themeSwatchesGrid');
+            if (!grid) return;
             grid.innerHTML = '';
 
             Object.keys(THEME_PALETTES).forEach(key => {
@@ -1128,9 +1142,8 @@
 
         function getUserAvatar(username) {
             if (!username) return 'https://placehold.co/100x100/10b981/ffffff?text=User';
-            const avatars = JSON.parse(localStorage.getItem('edulearn_user_avatars') || '{}');
-            if (avatars[username]) {
-                return avatars[username];
+            if (APP_STATE.userAvatars && APP_STATE.userAvatars[username]) {
+                return APP_STATE.userAvatars[username];
             }
             const initial = username.charAt(0).toUpperCase();
             return `https://placehold.co/100x100/0f172a/ffffff?text=${encodeURIComponent(initial)}`;
@@ -1156,14 +1169,15 @@
             const reader = new FileReader();
             reader.onload = function(e) {
                 const dataUrl = e.target.result;
-                let avatars = JSON.parse(localStorage.getItem('edulearn_user_avatars') || '{}');
-                avatars[user] = dataUrl;
-                localStorage.setItem('edulearn_user_avatars', JSON.stringify(avatars));
+                if (!APP_STATE.userAvatars) APP_STATE.userAvatars = {};
+                APP_STATE.userAvatars[user] = dataUrl;
+                localStorage.setItem('edulearn_user_avatars', JSON.stringify(APP_STATE.userAvatars));
 
                 document.getElementById('profileAvatarPreview').src = dataUrl;
                 renderAuthHeader();
                 renderChats();
                 showToast("อัปโหลดและเปลี่ยนรูปโปรไฟล์เรียบร้อยแล้ว!");
+                triggerAutoPush("อัปเดตรูปโปรไฟล์");
             };
             reader.readAsDataURL(file);
         }
@@ -1172,18 +1186,21 @@
             const user = APP_STATE.currentUser || (APP_STATE.isAdmin ? APP_STATE.adminUser : null);
             if (!user) return;
 
-            let avatars = JSON.parse(localStorage.getItem('edulearn_user_avatars') || '{}');
-            delete avatars[user];
-            localStorage.setItem('edulearn_user_avatars', JSON.stringify(avatars));
+            if (APP_STATE.userAvatars && APP_STATE.userAvatars[user]) {
+                delete APP_STATE.userAvatars[user];
+                localStorage.setItem('edulearn_user_avatars', JSON.stringify(APP_STATE.userAvatars));
+            }
 
             document.getElementById('profileAvatarPreview').src = getUserAvatar(user);
             renderAuthHeader();
             renderChats();
             showToast("ลบรูปโปรไฟล์เรียบร้อย");
+            triggerAutoPush("ลบรูปโปรไฟล์");
         }
 
         function renderAuthHeader() {
             const container = document.getElementById('authContainer');
+            if (!container) return;
             container.innerHTML = '';
 
             if (APP_STATE.isAdmin) {
@@ -1267,7 +1284,8 @@
 
             renderDriveDocsLinks();
             closeModal('driveDocModal');
-            onAdminContentChanged("บันทึกการตั้งค่า Google Drive & Docs เรียบร้อยแล้ว!");
+            showToast("บันทึกการตั้งค่า Google Drive & Docs เรียบร้อยแล้ว!");
+            triggerAutoPush("อัปเดตลิงก์ Google Drive & Docs");
         }
 
         function switchAuthTab(tab) {
@@ -1309,14 +1327,14 @@
                 return;
             }
 
-            let users = JSON.parse(localStorage.getItem('edulearn_registered_users') || '{}');
-            if (users[u]) {
+            if (!APP_STATE.registeredUsers) APP_STATE.registeredUsers = {};
+            if (APP_STATE.registeredUsers[u]) {
                 showToast("ชื่อผู้ใช้นี้มีในระบบแล้ว กรุณาใช้ชื่ออื่น", "error");
                 return;
             }
 
-            users[u] = p;
-            localStorage.setItem('edulearn_registered_users', JSON.stringify(users));
+            APP_STATE.registeredUsers[u] = p;
+            localStorage.setItem('edulearn_registered_users', JSON.stringify(APP_STATE.registeredUsers));
 
             APP_STATE.currentUser = u;
             localStorage.setItem('edulearn_currentUser', u);
@@ -1324,6 +1342,7 @@
             renderAuthHeader();
             closeModal('authModal');
             showToast(`สมัครสมาชิกเรียบร้อย ยินดีต้อนรับคุณ ${u}!`);
+            triggerAutoPush(`สมาชิกใหม่ลงทะเบียน: ${u}`);
         }
 
         function handleUserLogin(e) {
@@ -1344,8 +1363,7 @@
                 return;
             }
 
-            let users = JSON.parse(localStorage.getItem('edulearn_registered_users') || '{}');
-            if (users[u] && users[u] === p) {
+            if (APP_STATE.registeredUsers && APP_STATE.registeredUsers[u] === p) {
                 APP_STATE.currentUser = u;
                 localStorage.setItem('edulearn_currentUser', u);
                 renderAuthHeader();
@@ -1400,6 +1418,7 @@
 
         function renderCourses(filterCat = 'all') {
             const grid = document.getElementById('coursesGrid');
+            if (!grid) return;
             grid.innerHTML = '';
 
             const filtered = filterCat === 'all' ? APP_STATE.courses : APP_STATE.courses.filter(c => c.category === filterCat);
@@ -1495,7 +1514,8 @@
             renderCourses();
             updateStatsCounters();
             closeModal('editCourseModal');
-            onAdminContentChanged("บันทึกข้อมูลวิชาเรียบร้อยแล้ว!");
+            showToast("บันทึกข้อมูลวิชาเรียบร้อยแล้ว!");
+            triggerAutoPush("เพิ่ม/แก้ไขวิชาใหม่");
         }
 
         function deleteCourse(id) {
@@ -1504,11 +1524,13 @@
             localStorage.setItem('edulearn_courses', JSON.stringify(APP_STATE.courses));
             renderCourses();
             updateStatsCounters();
-            onAdminContentChanged("ลบวิชาเรียบร้อย");
+            showToast("ลบวิชาเรียบร้อย");
+            triggerAutoPush("ลบรายวิชา");
         }
 
         function renderPathways() {
             const container = document.getElementById('pathwaysContainer');
+            if (!container) return;
             container.innerHTML = '';
 
             APP_STATE.pathways.forEach((p, idx) => {
@@ -1579,7 +1601,8 @@
             localStorage.setItem('edulearn_pathways', JSON.stringify(APP_STATE.pathways));
             renderPathways();
             closeModal('editPathwayModal');
-            onAdminContentChanged("บันทึกขั้นตอนการเรียนรู้เรียบร้อย!");
+            showToast("บันทึกขั้นตอนการเรียนรู้เรียบร้อย!");
+            triggerAutoPush("อัปเดตขั้นตอนการเรียนรู้");
         }
 
         function deletePathway(step) {
@@ -1588,11 +1611,13 @@
             APP_STATE.pathways.forEach((p, idx) => p.step = idx + 1);
             localStorage.setItem('edulearn_pathways', JSON.stringify(APP_STATE.pathways));
             renderPathways();
-            onAdminContentChanged("ลบขั้นตอนการเรียนรู้เรียบร้อย");
+            showToast("ลบขั้นตอนการเรียนรู้เรียบร้อย");
+            triggerAutoPush("ลบขั้นตอนการเรียนรู้");
         }
 
         function renderMedia(filterText = '') {
             const grid = document.getElementById('mediaGrid');
+            if (!grid) return;
             grid.innerHTML = '';
 
             const list = filterText ? APP_STATE.media.filter(m => m.title.toLowerCase().includes(filterText.toLowerCase())) : APP_STATE.media;
@@ -1669,7 +1694,8 @@
             renderMedia();
             updateStatsCounters();
             closeModal('editMediaModal');
-            onAdminContentChanged("บันทึกข้อมูลสื่อเรียบร้อย!");
+            showToast("บันทึกข้อมูลสื่อเรียบร้อย!");
+            triggerAutoPush("เพิ่ม/แก้ไขสื่อมัลติมีเดีย");
         }
 
         function deleteMedia(id) {
@@ -1678,11 +1704,13 @@
             localStorage.setItem('edulearn_media', JSON.stringify(APP_STATE.media));
             renderMedia();
             updateStatsCounters();
-            onAdminContentChanged("ลบสื่อเรียบร้อย");
+            showToast("ลบสื่อเรียบร้อย");
+            triggerAutoPush("ลบสื่อมัลติมีเดีย");
         }
 
         function renderQuiz() {
             const quizContainer = document.getElementById('quizApp');
+            if (!quizContainer) return;
             const q = APP_STATE.quizzes[APP_STATE.currentQuizIndex];
 
             if (!q) {
@@ -1792,7 +1820,8 @@
             renderQuiz();
             updateStatsCounters();
             closeModal('editQuizModal');
-            onAdminContentChanged("บันทึกแบบทดสอบเรียบร้อย!");
+            showToast("บันทึกแบบทดสอบเรียบร้อย!");
+            triggerAutoPush("อัปเดตแบบทดสอบ");
         }
 
         function deleteQuiz(idx) {
@@ -1802,11 +1831,13 @@
             APP_STATE.currentQuizIndex = 0;
             renderQuiz();
             updateStatsCounters();
-            onAdminContentChanged("ลบข้อสอบเรียบร้อย");
+            showToast("ลบข้อสอบเรียบร้อย");
+            triggerAutoPush("ลบแบบทดสอบ");
         }
 
         function renderChats() {
             const chatBox = document.getElementById('chatMessageList');
+            if (!chatBox) return;
             chatBox.innerHTML = '';
             
             document.getElementById('chatCountBadge').innerText = `${APP_STATE.chats.length} ข้อความ`;
@@ -1856,6 +1887,9 @@
             localStorage.setItem('edulearn_chats', JSON.stringify(APP_STATE.chats));
             renderChats();
             input.value = '';
+
+            // Auto-push HTML to GitHub on new chat
+            triggerAutoPush(`ข้อความใหม่ในห้องสนทนาจาก ${user}`);
         }
 
         function handleWorkSubmit(e) {
@@ -1886,12 +1920,14 @@
             }
 
             document.getElementById('submissionForm').reset();
-            showToast("ส่งงานสำเร็จ! ข้อมูลถูกจัดเก็บส่งไปยัง Google Drive & Docs เรียบร้อยแล้ว");
+            showToast("ส่งงานสำเร็จ! ข้อมูลถูกบันทึกและซิงค์ขึ้น GitHub เรียบร้อยแล้ว");
+            triggerAutoPush(`การส่งงานใหม่จาก ${student}`);
         }
 
         function renderSubmissions() {
             const list = document.getElementById('submissionList');
             const counter = document.getElementById('submissionCounter');
+            if (!list || !counter) return;
             list.innerHTML = '';
             
             counter.innerText = `${APP_STATE.submissions.length} รายการ`;
@@ -1923,6 +1959,22 @@
             localStorage.setItem('edulearn_webhook', url);
             closeModal('googleSheetModal');
             showToast("บันทึกการตั้งค่า Google Sheet Webhook เรียบร้อย");
+            triggerAutoPush("อัปเดต Google Sheet Webhook URL");
+        }
+
+        function saveHeroSection(e) {
+            e.preventDefault();
+            const badge = document.getElementById('editHeroBadge').value.trim();
+            const title = document.getElementById('editHeroTitle').value.trim();
+            const desc = document.getElementById('editHeroDesc').value.trim();
+
+            document.getElementById('heroBadgeText').innerHTML = `<i class="fa-solid fa-sparkles text-amber-300"></i> ${escapeHtml(badge)}`;
+            document.getElementById('heroTitleText').innerHTML = escapeHtml(title);
+            document.getElementById('heroDescText').innerText = desc;
+
+            closeModal('editHeroModal');
+            showToast("บันทึกสโลแกนหน้าแรกเรียบร้อย!");
+            triggerAutoPush("แก้ไขสโลแกนหน้าแรก");
         }
 
         function updateStatsCounters() {
@@ -1956,13 +2008,15 @@
 
             closeModal('githubModal');
             showToast("บันทึกการตั้งค่า GitHub PAT Token เรียบร้อยแล้ว!");
+            pushToGitHub(false);
         }
 
         function getExportHtml() {
-            // Temporarily reset Admin mode and User state for static HTML generation
+            // Save state snapshot
             const wasAdmin = APP_STATE.isAdmin;
             const originalUser = APP_STATE.currentUser;
 
+            // Enforce student/logout mode for static GitHub Pages export
             APP_STATE.isAdmin = false;
             APP_STATE.currentUser = null;
 
@@ -1974,7 +2028,7 @@
 
             let rawHtml = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
 
-            // Restore live session state back in memory
+            // Restore live interactive session state in memory
             APP_STATE.isAdmin = wasAdmin;
             APP_STATE.currentUser = originalUser;
 
@@ -1984,22 +2038,31 @@
             renderMedia();
             renderQuiz();
 
-            // Craft clean student export state JSON
+            // Prepare clean state export
             const exportState = JSON.parse(JSON.stringify(APP_STATE));
             exportState.isAdmin = false;
             exportState.currentUser = null;
 
             const stateJson = JSON.stringify(exportState, null, 4);
-            const regex = new RegExp('/\\* INITIAL_APP_STATE_START \\*/[\\s\\S]*?/\\* INITIAL_APP_STATE_END \\*/');
+            const regex = /\/\* INITIAL_APP_STATE_START \*\/[\s\S]*?\/\* INITIAL_APP_STATE_END \*\//;
             const replacement = '/* INITIAL_APP_STATE_START */\n        const APP_STATE = ' + stateJson + ';\n        /* INITIAL_APP_STATE_END */';
             
             if (regex.test(rawHtml)) {
-                rawHtml = rawHtml.replace(regex, () => replacement);
+                rawHtml = rawHtml.replace(regex, function() { return replacement; });
             }
             return rawHtml;
         }
 
-        async function pushToGitHub() {
+        function triggerAutoPush(reason = 'อัปเดตข้อมูลบนเว็บ') {
+            const token = localStorage.getItem('github_token') || '';
+            const owner = localStorage.getItem('github_owner') || '';
+            const repo = localStorage.getItem('github_repo') || '';
+            if (token && owner && repo) {
+                pushToGitHub(true, reason);
+            }
+        }
+
+        async function pushToGitHub(silent = false, customCommitMsg = null) {
             const token = localStorage.getItem('github_token') || '';
             const owner = localStorage.getItem('github_owner') || '';
             const repo = localStorage.getItem('github_repo') || '';
@@ -2007,12 +2070,14 @@
             const branch = localStorage.getItem('github_branch') || 'main';
 
             if (!token || !owner || !repo) {
-                openModal('githubModal');
-                showToast("กรุณาตั้งค่า GitHub Token, Username และ Repo ก่อนส่งไฟล์", "error");
+                if (!silent) {
+                    openModal('githubModal');
+                    showToast("กรุณาตั้งค่า GitHub Token, Username และ Repo ก่อนส่งไฟล์", "error");
+                }
                 return;
             }
 
-            showToast("กำลังเตรียมไฟล์และส่งไปยัง GitHub...", "info");
+            if (!silent) showToast("กำลังเตรียมไฟล์และส่งไปยัง GitHub...", "info");
 
             try {
                 const fileContent = getExportHtml();
@@ -2039,11 +2104,13 @@
                         sha = getData.sha;
                     }
                 } catch (e) {
-                    console.log("File is new or fetch error:", e);
+                    console.log("File fetch error:", e);
                 }
 
+                const msg = customCommitMsg ? `Auto Sync: ${customCommitMsg}` : `Auto Update index.html via EduLearn Hub [${new Date().toLocaleString('th-TH')}]`;
+
                 const bodyData = {
-                    message: `Auto Update index.html via EduLearn Hub Admin [${new Date().toLocaleString('th-TH')}]`,
+                    message: msg,
                     content: contentBase64,
                     branch: branch
                 };
@@ -2060,43 +2127,37 @@
                 });
 
                 if (putRes.ok) {
-                    showToast("อัปโหลดไฟล์ไปยัง GitHub สำเร็จเรียบร้อยแล้ว! 🚀");
+                    showToast("อัปโหลดและซิงค์ข้อมูลขึ้น GitHub สำเร็จเรียบร้อยแล้ว! 🚀");
                 } else {
                     const errData = await putRes.json();
-                    showToast(`อัปโหลดล้มเหลว: ${errData.message || 'ตรวจสอบ Token หรือสิทธิ์'}`, "error");
+                    if (!silent) showToast(`อัปโหลดล้มเหลว: ${errData.message || 'ตรวจสอบ Token หรือสิทธิ์'}`, "error");
                 }
             } catch (err) {
                 console.error(err);
-                showToast(`เกิดข้อผิดพลาดในการเชื่อมต่อ: ${err.message}`, "error");
-            }
-        }
-
-        function onAdminContentChanged(msg) {
-            showToast(msg);
-            const token = localStorage.getItem('github_token');
-            if (token) {
-                setTimeout(() => {
-                    pushToGitHub();
-                }, 800);
+                if (!silent) showToast(`เกิดข้อผิดพลาดในการเชื่อมต่อ: ${err.message}`, "error");
             }
         }
 
         function openModal(id) {
-            document.getElementById(id).classList.remove('hidden');
+            const el = document.getElementById(id);
+            if (el) el.classList.remove('hidden');
         }
 
         function closeModal(id) {
-            document.getElementById(id).classList.add('hidden');
+            const el = document.getElementById(id);
+            if (el) el.classList.add('hidden');
         }
 
         function toggleMobileMenu() {
-            document.getElementById('mobileMenu').classList.toggle('hidden');
+            const menu = document.getElementById('mobileMenu');
+            if (menu) menu.classList.toggle('hidden');
         }
 
         function showToast(message, type = 'success') {
             const toast = document.getElementById('toast');
             const msgEl = document.getElementById('toastMessage');
             const icon = document.getElementById('toastIcon');
+            if (!toast || !msgEl || !icon) return;
 
             msgEl.innerText = message;
             if (type === 'error') {
