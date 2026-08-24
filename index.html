@@ -1,1 +1,2125 @@
 
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduLearn Hub - ระบบสื่อการเรียนรู้แบบครบวงจร</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Prompt & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Prompt', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        theme: {
+                            50: 'var(--color-50)',
+                            100: 'var(--color-100)',
+                            200: 'var(--color-200)',
+                            500: 'var(--color-500)',
+                            600: 'var(--color-600)',
+                            700: 'var(--color-700)',
+                            800: 'var(--color-800)',
+                            900: 'var(--color-900)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            /* Default Theme: Emerald */
+            --color-50: #ecfdf5;
+            --color-100: #d1fae5;
+            --color-200: #a7f3d0;
+            --color-500: #10b981;
+            --color-600: #059669;
+            --color-700: #047857;
+            --color-800: #065f46;
+            --color-900: #064e3b;
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            transition: background-color 0.3s ease;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-500);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-700);
+        }
+
+        .gradient-banner {
+            background: linear-gradient(135deg, var(--color-700) 0%, var(--color-900) 100%);
+        }
+
+        .btn-theme {
+            background-color: var(--color-600);
+            color: #ffffff;
+            transition: all 0.2s;
+        }
+        .btn-theme:hover {
+            background-color: var(--color-700);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .text-theme {
+            color: var(--color-600);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-emerald-200">
+
+    <!-- Top Navbar -->
+    <header class="sticky top-0 z-40 w-full glass-card shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Logo & Brand -->
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-gradient-to-tr from-gray-900 to-theme-600 flex items-center justify-center text-white shadow-lg transform hover:rotate-6 transition-transform">
+                        <i class="fa-solid fa-graduation-cap text-xl sm:text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-lg sm:text-2xl font-bold tracking-tight text-gray-900 block leading-none">EduLearn <span class="text-theme">Hub</span></span>
+                        <span class="text-xs text-gray-500 font-medium hidden sm:inline-block">แพลตฟอร์มสื่อการเรียนรู้อัจฉริยะ</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+                    <a href="#main-area" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-theme-600 hover:bg-theme-50 transition"><i class="fa-solid fa-book-open mr-1.5"></i>พื้นที่หลัก</a>
+                    <a href="#pathways" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-theme-600 hover:bg-theme-50 transition"><i class="fa-solid fa-route mr-1.5"></i>เส้นทางการเรียนรู้</a>
+                    <a href="#media-library" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-theme-600 hover:bg-theme-50 transition"><i class="fa-solid fa-photo-film mr-1.5"></i>สื่อการเรียนรู้</a>
+                    <a href="#activities" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-theme-600 hover:bg-theme-50 transition"><i class="fa-solid fa-gamepad mr-1.5"></i>กิจกรรม</a>
+                    <a href="#community" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-theme-600 hover:bg-theme-50 transition"><i class="fa-solid fa-comments mr-1.5"></i>ห้องพูดคุย</a>
+                    <a href="#submissions" class="px-3 py-2 rounded-lg text-sm font-medium text-gray-700 hover:text-theme-600 hover:bg-theme-50 transition"><i class="fa-solid fa-cloud-arrow-up mr-1.5"></i>ส่งงาน (Drive)</a>
+                </nav>
+
+                <!-- Action Controls: Color Picker, Auth, Profile Avatar -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <button onclick="openModal('themeModal')" class="p-2 sm:px-3 sm:py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 flex items-center gap-2 transition text-xs sm:text-sm font-medium" title="เลือกธีมสี">
+                        <i class="fa-solid fa-palette text-theme text-base"></i>
+                        <span class="hidden md:inline">เปลี่ยนสี</span>
+                    </button>
+
+                    <div id="authContainer" class="flex items-center gap-2"></div>
+
+                    <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl text-gray-600 hover:bg-gray-100 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl" id="menuIcon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t border-gray-200 bg-white/95 backdrop-blur-md px-4 pt-3 pb-6 space-y-2">
+            <a href="#main-area" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-base font-medium text-gray-700 hover:bg-theme-50 hover:text-theme-600"><i class="fa-solid fa-book-open w-6 text-theme"></i>พื้นที่หลักของการเรียนรู้</a>
+            <a href="#pathways" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-base font-medium text-gray-700 hover:bg-theme-50 hover:text-theme-600"><i class="fa-solid fa-route w-6 text-theme"></i>เส้นทางการเรียนรู้</a>
+            <a href="#media-library" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-base font-medium text-gray-700 hover:bg-theme-50 hover:text-theme-600"><i class="fa-solid fa-photo-film w-6 text-theme"></i>สื่อสำหรับการเรียนรู้</a>
+            <a href="#activities" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-base font-medium text-gray-700 hover:bg-theme-50 hover:text-theme-600"><i class="fa-solid fa-gamepad w-6 text-theme"></i>กิจกรรมการเรียนรู้</a>
+            <a href="#community" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-base font-medium text-gray-700 hover:bg-theme-50 hover:text-theme-600"><i class="fa-solid fa-comments w-6 text-theme"></i>สนทนาพูดคุย</a>
+            <a href="#submissions" onclick="toggleMobileMenu()" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-base font-medium text-gray-700 hover:bg-theme-50 hover:text-theme-600"><i class="fa-solid fa-cloud-arrow-up w-6 text-theme"></i>ส่งงานเข้า Google Drive</a>
+            
+            <!-- Quick Auth Controls in Mobile Menu -->
+            <div class="pt-3 border-t border-gray-200 flex flex-col gap-2">
+                <button onclick="openModal('authModal'); toggleMobileMenu()" class="w-full py-2.5 rounded-xl btn-theme font-semibold text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-user-plus"></i> สมัครสมาชิก / เข้าสู่ระบบ
+                </button>
+                <button onclick="openModal('adminAuthModal'); toggleMobileMenu()" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-shield-halved"></i> เข้าสู่ระบบผู้ดูแล (Admin)
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Global Admin Ribbon Bar -->
+    <div id="adminRibbon" class="hidden bg-amber-500 text-slate-900 px-4 py-2 text-xs sm:text-sm font-semibold shadow-inner">
+        <div class="flex items-center gap-2 max-w-7xl mx-auto w-full justify-between flex-wrap">
+            <span class="flex items-center gap-2">
+                <i class="fa-solid fa-shield-halved text-lg"></i>
+                คุณอยู่ในโหมดผู้ดูแลระบบ (Admin Mode: Bank4481) - คุณสามารถแก้ไข ปรับปรุง เพิ่ม/ลบ ได้ทุกหัวข้อ
+            </span>
+            <div class="flex items-center gap-2 flex-wrap mt-1 sm:mt-0">
+                <button onclick="openModal('editHeroModal')" class="bg-slate-900 text-white px-2.5 py-1 rounded-lg hover:bg-slate-800 transition"><i class="fa-solid fa-pen mr-1"></i>แก้ไขสโลแกน</button>
+                <button onclick="openAddCourseModal()" class="bg-slate-900 text-white px-2.5 py-1 rounded-lg hover:bg-slate-800 transition"><i class="fa-solid fa-plus mr-1"></i>เพิ่มวิชา</button>
+                <button onclick="openAddPathwayModal()" class="bg-slate-900 text-white px-2.5 py-1 rounded-lg hover:bg-slate-800 transition"><i class="fa-solid fa-plus mr-1"></i>เพิ่มขั้นตอน</button>
+                <button onclick="openAddMediaModal()" class="bg-slate-900 text-white px-2.5 py-1 rounded-lg hover:bg-slate-800 transition"><i class="fa-solid fa-plus mr-1"></i>เพิ่มสื่อ</button>
+                <button onclick="openAddQuizModal()" class="bg-slate-900 text-white px-2.5 py-1 rounded-lg hover:bg-slate-800 transition"><i class="fa-solid fa-plus mr-1"></i>เพิ่มแบบทดสอบ</button>
+                <button onclick="openModalDriveDoc()" class="bg-white text-slate-900 px-2.5 py-1 rounded-lg hover:bg-gray-100 transition"><i class="fa-brands fa-google-drive mr-1"></i>ตั้งค่า Drive & Docs</button>
+                <button onclick="openModal('googleSheetModal')" class="bg-white text-slate-900 px-2.5 py-1 rounded-lg hover:bg-gray-100 transition"><i class="fa-solid fa-table mr-1"></i>ตั้งค่า Google Sheet</button>
+                <button onclick="openModal('githubModal')" class="bg-slate-800 text-amber-300 border border-amber-400 px-2.5 py-1 rounded-lg hover:bg-slate-700 transition"><i class="fa-brands fa-github mr-1"></i>ตั้งค่า GitHub Token</button>
+                <button onclick="pushToGitHub()" class="bg-emerald-700 text-white px-2.5 py-1 rounded-lg hover:bg-emerald-800 transition"><i class="fa-solid fa-cloud-arrow-up mr-1"></i>อัปโหลดขึ้น GitHub ทันที</button>
+                <button onclick="logoutAdmin()" class="bg-red-600 text-white px-2.5 py-1 rounded-lg hover:bg-red-700 transition">ออกจากระบบผู้ดูแล</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden gradient-banner text-white py-16 sm:py-24 px-4 sm:px-6 lg:px-8">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,0.15),transparent_70%)] pointer-events-none"></div>
+            <div class="max-w-7xl mx-auto relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
+                <div class="w-full lg:w-1/2 text-center lg:text-left space-y-6">
+                    <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/20 backdrop-blur-md text-xs sm:text-sm font-medium border border-white/30" id="heroBadgeText">
+                        <i class="fa-solid fa-sparkles text-amber-300"></i> แหล่งรวมสื่อการเรียนรู้ออนไลน์คุณภาพสูง
+                    </span>
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight" id="heroTitleText">
+                        เปิดประตูสู่ความรู้ <br class="hidden sm:inline">
+                        <span class="text-emerald-300">ไร้ขีดจำกัดได้ทุกที่ทุกเวลา</span>
+                    </h1>
+                    <p class="text-sm sm:text-lg text-emerald-50 max-w-xl font-light leading-relaxed" id="heroDescText">
+                        รวบรวมสื่อการสอน บทเรียนปฏิสัมพันธ์ เส้นพัฒนาทักษะ กิจกรรมทดสอบความรู้ และระบบจัดเก็บงานเข้าสู่ Google Drive อย่างเป็นระบบ
+                    </p>
+                    
+                    <div class="pt-2 flex flex-col sm:flex-row items-center gap-3 justify-center lg:justify-start">
+                        <a href="#main-area" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white text-theme-900 font-bold hover:bg-emerald-50 transition shadow-lg text-center flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-rocket text-theme"></i> เริ่มต้นการเรียนรู้
+                        </a>
+                        <a href="#submissions" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/30 font-semibold backdrop-blur-md transition text-center flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-upload"></i> ส่งงานการบ้าน
+                        </a>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-5/12">
+                    <div class="glass-card bg-white/10 border-white/20 p-6 sm:p-8 rounded-3xl text-white shadow-2xl backdrop-blur-xl">
+                        <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line text-amber-300"></i> ภาพรวมการใช้งานระบบ
+                        </h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-white/10 p-4 rounded-2xl border border-white/10 text-center">
+                                <div class="text-3xl font-extrabold text-amber-300" id="statCoursesCount">0</div>
+                                <div class="text-xs text-gray-200 mt-1">คอร์สสื่อการเรียนรู้</div>
+                            </div>
+                            <div class="bg-white/10 p-4 rounded-2xl border border-white/10 text-center">
+                                <div class="text-3xl font-extrabold text-amber-300" id="statMediaCount">0</div>
+                                <div class="text-xs text-gray-200 mt-1">สื่อมัลติมีเดีย</div>
+                            </div>
+                            <div class="bg-white/10 p-4 rounded-2xl border border-white/10 text-center">
+                                <div class="text-3xl font-extrabold text-amber-300" id="statQuizzesCount">0</div>
+                                <div class="text-xs text-gray-200 mt-1">แบบทดสอบ</div>
+                            </div>
+                            <div class="bg-white/10 p-4 rounded-2xl border border-white/10 text-center">
+                                <div class="text-3xl font-extrabold text-amber-300" id="statSubmissionsCount">0</div>
+                                <div class="text-xs text-gray-200 mt-1">ไฟล์งานใน Drive</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 1: พื้นที่หลักของการเรียนรู้ -->
+        <section id="main-area" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                <div>
+                    <span class="text-xs font-bold tracking-wider uppercase text-theme">Learning Hub</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 mt-1 flex items-center gap-3">
+                        <i class="fa-solid fa-book-open-reader text-theme"></i> 1. พื้นที่หลักของการเรียนรู้
+                    </h2>
+                    <p class="text-gray-600 mt-2 text-sm sm:text-base">เลือกเรียนรู้บทเรียนแบบอินเทอร์แอคทีฟ มีทั้งวิดีโอ สไลด์ และเอกสารประกอบการเรียน (ผู้ดูแลสามารถ เพิ่ม/แก้ไข/ลบ ได้)</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-2">
+                    <div class="flex flex-wrap gap-2" id="courseCategoryFilters">
+                        <button onclick="filterCourses('all')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-theme-600 text-white shadow-sm transition filter-btn active" data-cat="all">ทั้งหมด</button>
+                        <button onclick="filterCourses('tech')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 transition filter-btn" data-cat="tech">เทคโนโลยี & โค้ด</button>
+                        <button onclick="filterCourses('science')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 transition filter-btn" data-cat="science">วิทยาศาสตร์</button>
+                        <button onclick="filterCourses('art')" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 transition filter-btn" data-cat="art">ศิลปะ & ดีไซน์</button>
+                    </div>
+                    <div id="adminCourseBtn"></div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="coursesGrid"></div>
+        </section>
+
+        <!-- SECTION 2: เส้นทางการเรียนรู้แบบเป็นขั้นตอน -->
+        <section id="pathways" class="py-16 bg-slate-100/70 border-y border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-xs font-bold tracking-wider uppercase text-theme">Skill Roadmap</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 mt-1">
+                        <i class="fa-solid fa-route text-theme mr-2"></i>2. เส้นทางการเรียนรู้แบบเป็นขั้นตอน
+                    </h2>
+                    <p class="text-gray-600 mt-2 text-sm sm:text-base">พัฒนาทักษะอย่างเป็นระบบจากระดับเริ่มต้นจนถึงผู้เชี่ยวชาญ (ผู้ดูแลสามารถ เพิ่ม/แก้ไข/ลบ ได้)</p>
+                    <div id="adminPathwayBtn" class="mt-4"></div>
+                </div>
+
+                <div class="relative">
+                    <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-theme-500 via-theme-600 to-gray-300 rounded-full"></div>
+                    <div class="space-y-8 sm:space-y-12" id="pathwaysContainer"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: สื่อสำหรับการเรียนรู้มัลติมีเดีย -->
+        <section id="media-library" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div>
+                    <span class="text-xs font-bold tracking-wider uppercase text-theme">Media Resources</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 mt-1 flex items-center gap-3">
+                        <i class="fa-solid fa-photo-film text-theme"></i> 3. สื่อสำหรับการเรียนรู้มัลติมีเดีย
+                    </h2>
+                    <p class="text-gray-600 mt-2 text-sm sm:text-base">คลังรวบรวมวิดีโอ คลิปเสียง E-Book สไลด์ และอินโฟกราฟิกความรู้ (ผู้ดูแลสามารถ เพิ่ม/แก้ไข/ลบ ได้)</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="relative w-full md:w-72">
+                        <input type="text" id="mediaSearchInput" onkeyup="searchMedia()" placeholder="ค้นหาสื่อการเรียนรู้..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-theme-500 focus:border-transparent text-sm">
+                        <i class="fa-solid fa-search absolute left-3.5 top-3.5 text-gray-400"></i>
+                    </div>
+                    <div id="adminMediaBtn"></div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="mediaGrid"></div>
+        </section>
+
+        <!-- SECTION 4: กิจกรรมและแบบทดสอบการเรียนรู้ -->
+        <section id="activities" class="py-16 bg-slate-900 text-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="text-xs font-bold tracking-wider uppercase text-amber-400">Interactive Learning</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold mt-1">
+                        <i class="fa-solid fa-gamepad text-amber-400 mr-2"></i>4. กิจกรรมและแบบทดสอบการเรียนรู้
+                    </h2>
+                    <p class="text-gray-300 mt-2 text-sm sm:text-base">ทดสอบความเข้าใจ รับคะแนน และสะสมตราความสำเร็จทันที (ผู้ดูแลสามารถ เพิ่ม/แก้ไข/ลบ ได้)</p>
+                    <div id="adminQuizBtn" class="mt-4"></div>
+                </div>
+
+                <div class="max-w-3xl mx-auto bg-slate-800/80 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-slate-700 shadow-2xl">
+                    <div id="quizApp"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: พูดคุยแลกเปลี่ยนผ่านเว็บไซต์ -->
+        <section id="community" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-8">
+                    <span class="text-xs font-bold tracking-wider uppercase text-theme">Community Hub</span>
+                    <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 mt-1 flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-comments text-theme"></i> 5. ห้องพูดคุยสนทนาแลกเปลี่ยนเรียนรู้
+                    </h2>
+                    <p class="text-gray-600 mt-2 text-sm sm:text-base">พื้นที่สำหรับนักเรียนและผู้สอนสอบถามข้อสงสัยและแชร์ความรู้</p>
+                </div>
+
+                <div class="glass-card rounded-3xl shadow-xl overflow-hidden border border-gray-200">
+                    <div class="bg-gradient-to-r from-slate-900 to-theme-800 text-white p-4 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-3 h-3 rounded-full bg-emerald-400 animate-pulse"></div>
+                            <span class="font-semibold text-sm sm:text-base">ห้องสนทนากลาง EduLearn (ออนไลน์)</span>
+                        </div>
+                        <span class="text-xs bg-white/20 px-2.5 py-1 rounded-full" id="chatCountBadge">0 ข้อความ</span>
+                    </div>
+
+                    <div class="h-96 overflow-y-auto p-4 sm:p-6 space-y-4 bg-slate-50/50" id="chatMessageList"></div>
+
+                    <div class="p-4 bg-white border-t border-gray-200">
+                        <form id="chatForm" onsubmit="handleSendChat(event)" class="flex gap-2">
+                            <input type="text" id="chatInput" placeholder="พิมพ์ข้อความของคุณที่นี่..." class="flex-grow px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-theme-500 focus:outline-none text-sm" required>
+                            <button type="submit" class="btn-theme px-6 py-3 rounded-xl font-medium flex items-center gap-2 text-sm shadow-md">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span class="hidden sm:inline">ส่ง</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: ช่องทางการส่งงานเข้า Google Drive & Google Docs -->
+        <section id="submissions" class="py-16 bg-gradient-to-b from-slate-100 to-white border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                    <div class="lg:col-span-7 glass-card p-6 sm:p-8 rounded-3xl shadow-xl border border-gray-200">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl font-bold">
+                                <i class="fa-brands fa-google-drive"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-900">6. ช่องทางการส่งงานนักเรียน</h3>
+                                <p class="text-xs sm:text-sm text-gray-500">ข้อมูลและลิงก์งานจะถูกบันทึกไปยัง Google Drive & Google Docs / Sheets</p>
+                            </div>
+                        </div>
+
+                        <!-- External Links for Google Drive Folder & Google Docs Log -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6" id="driveDocsButtonsContainer">
+                            <a id="btnOpenGoogleDrive" href="https://drive.google.com" target="_blank" class="p-3.5 rounded-2xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-800 flex items-center gap-3 transition shadow-sm">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xl shadow">
+                                    <i class="fa-brands fa-google-drive"></i>
+                                </div>
+                                <div class="truncate">
+                                    <div class="text-xs font-bold truncate">โฟลเดอร์ Google Drive</div>
+                                    <div class="text-[10px] text-emerald-600">คลิกเปิดโฟลเดอร์เก็บงาน</div>
+                                </div>
+                            </a>
+
+                            <a id="btnOpenGoogleDocs" href="https://docs.google.com" target="_blank" class="p-3.5 rounded-2xl bg-blue-50 hover:bg-blue-100 border border-blue-200 text-blue-800 flex items-center gap-3 transition shadow-sm">
+                                <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xl shadow">
+                                    <i class="fa-solid fa-file-word"></i>
+                                </div>
+                                <div class="truncate">
+                                    <div class="text-xs font-bold truncate">สมุดรวบรวมงาน Google Docs</div>
+                                    <div class="text-[10px] text-blue-600">คลิกเปิดดูบันทึกงานนักเรียน</div>
+                                </div>
+                            </a>
+                        </div>
+
+                        <form id="submissionForm" onsubmit="handleWorkSubmit(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ชื่อ-นามสกุล ผู้ส่งงาน <span class="text-red-500">*</span></label>
+                                <input type="text" id="subStudentName" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-theme-500 text-sm" placeholder="เช่น นายสมชาย ใจดี">
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ระดับชั้น / ห้อง <span class="text-red-500">*</span></label>
+                                    <input type="text" id="subClass" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-theme-500 text-sm" placeholder="เช่น ม.4/1 เลขที่ 5">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">หัวข้อกิจกรรม/ชิ้นงาน <span class="text-red-500">*</span></label>
+                                    <select id="subAssignmentTitle" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-theme-500 text-sm">
+                                        <option value="">-- เลือกหัวข้อการส่งงาน --</option>
+                                        <option value="ใบงานที่ 1: การเขียนโปรแกรมเบื้องต้น">ใบงานที่ 1: การเขียนโปรแกรมเบื้องต้น</option>
+                                        <option value="ใบงานที่ 2: การออกแบบอินโฟกราฟิก">ใบงานที่ 2: การออกแบบอินโฟกราฟิก</option>
+                                        <option value="กิจกรรมที่ 3: โครงงานวิทยาศาสตร์">กิจกรรมที่ 3: โครงงานวิทยาศาสตร์</option>
+                                        <option value="ชิ้นงานอิสระ / อื่นๆ">ชิ้นงานอิสระ / อื่นๆ</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">แนบไฟล์ หรือ ลิงก์งาน Google Drive / Canva <span class="text-red-500">*</span></label>
+                                <input type="url" id="subFileUrl" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-theme-500 text-sm" placeholder="https://drive.google.com/file/d/... หรือ https://canva.com/...">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold text-gray-700 uppercase mb-1">หมายเหตุเพิ่มเติม (ถ้ามี)</label>
+                                <textarea id="subNote" rows="2" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-theme-500 text-sm" placeholder="บันทึกถึงครูผู้สอน..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 px-6 rounded-xl btn-theme font-bold flex items-center justify-center gap-2 shadow-lg">
+                                <i class="fa-solid fa-paper-plane"></i> ยืนยันส่งงานเข้า Google Drive & Docs
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-xl relative overflow-hidden">
+                            <div class="relative z-10">
+                                <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold border border-emerald-500/30">
+                                    Google Cloud Sync Active
+                                </span>
+                                <h4 class="text-xl font-bold mt-3">ระบบจัดเก็บงานอัตโนมัติ</h4>
+                                <p class="text-xs text-gray-300 mt-2 leading-relaxed">
+                                    เมื่อกดส่งงาน ข้อมูลผู้ส่งและลิงก์ชิ้นงานจะถูกจัดเก็บบันทึกส่งตรงเข้า Google Drive & Docs / Sheets ของอาจารย์ผู้สอนโดยอัตโนมัติ
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-3xl shadow-lg border border-gray-200">
+                            <h4 class="text-base font-bold text-gray-900 mb-3 flex items-center justify-between">
+                                <span><i class="fa-solid fa-list-check text-theme mr-2"></i>ประวัติการส่งงานล่าสุด</span>
+                                <span class="text-xs text-gray-500 font-normal" id="submissionCounter">0 รายการ</span>
+                            </h4>
+                            <div class="space-y-3 max-h-64 overflow-y-auto pr-1" id="submissionList"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL 1: Theme Color Selector (12 Colors) -->
+    <div id="themeModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl">
+            <div class="flex items-center justify-between pb-4 border-b border-gray-200">
+                <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                    <i class="fa-solid fa-palette text-theme"></i> เลือกธีมสีของเว็บไซต์ (12 เฉดสี)
+                </h3>
+                <button onclick="closeModal('themeModal')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 my-4" id="themeSwatchesGrid"></div>
+            <div class="mt-6 text-right">
+                <button onclick="closeModal('themeModal')" class="px-5 py-2.5 rounded-xl bg-gray-900 text-white font-medium text-sm hover:bg-gray-800 transition">ตกลง</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: User Auth Modal -->
+    <div id="authModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closeModal('authModal')" class="absolute right-5 top-5 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+
+            <div class="flex border-b border-gray-200 mb-6">
+                <button id="tabLoginBtn" onclick="switchAuthTab('login')" class="flex-1 py-3 text-sm font-bold border-b-2 border-theme text-theme transition">เข้าสู่ระบบ</button>
+                <button id="tabRegisterBtn" onclick="switchAuthTab('register')" class="flex-1 py-3 text-sm font-bold border-b-2 border-transparent text-gray-400 hover:text-gray-600 transition">สมัครสมาชิก</button>
+            </div>
+
+            <form id="loginForm" onsubmit="handleUserLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ชื่อผู้ใช้งาน (Username)</label>
+                    <input type="text" id="loginUsername" required class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm" placeholder="กรอกชื่อผู้ใช้">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">รหัสผ่าน (Password)</label>
+                    <input type="password" id="loginPassword" required class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm" placeholder="กรอกรหัสผ่าน">
+                </div>
+                <button type="submit" class="w-full py-3 rounded-xl btn-theme font-bold text-sm shadow-md">เข้าสู่ระบบ</button>
+            </form>
+
+            <form id="registerForm" onsubmit="handleUserRegister(event)" class="space-y-4 hidden">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ตั้งชื่อผู้ใช้งาน (Username)</label>
+                    <input type="text" id="regUsername" required class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm" placeholder="ตั้งชื่อผู้ใช้ใหม่">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ตั้งรหัสผ่าน (Password)</label>
+                    <input type="password" id="regPassword" required class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm" placeholder="ตั้งรหัสผ่าน">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ยืนยันรหัสผ่าน</label>
+                    <input type="password" id="regPasswordConfirm" required class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm" placeholder="ยืนยันรหัสผ่านอีกครั้ง">
+                </div>
+                <button type="submit" class="w-full py-3 rounded-xl btn-theme font-bold text-sm shadow-md">ยืนยันลงทะเบียนสมาชิก</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 3: Admin Auth Modal -->
+    <div id="adminAuthModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative">
+            <button onclick="closeModal('adminAuthModal')" class="absolute right-5 top-5 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-3xl mx-auto mb-3">
+                    <i class="fa-solid fa-user-shield"></i>
+                </div>
+                <h3 class="text-2xl font-extrabold text-gray-900">เข้าสู่ระบบผู้ดูแล (Admin)</h3>
+                <p class="text-xs text-gray-500 mt-1">สำหรับการแก้ไข ปรับปรุงข้อความและเนื้อหาเว็บไซต์</p>
+            </div>
+
+            <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ชื่อผู้ใช้ Admin</label>
+                    <input type="text" id="adminUser" required class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm" placeholder="กรอกชื่อผู้ใช้ผู้ดูแล">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">รหัสผ่าน Admin</label>
+                    <input type="password" id="adminPass" required class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm" placeholder="รหัสผ่านผู้ดูแล">
+                </div>
+                <button type="submit" class="w-full py-3.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold text-sm shadow-lg transition">
+                    <i class="fa-solid fa-key mr-2"></i>ปลดล็อกสิทธิ์ผู้ดูแลระบบ
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 4: Profile & Avatar Management Modal (Supports all image extensions) -->
+    <div id="profileModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl relative">
+            <button onclick="closeModal('profileModal')" class="absolute right-5 top-5 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+
+            <div class="text-center mb-6">
+                <div class="relative w-24 h-24 mx-auto mb-3">
+                    <img id="profileAvatarPreview" src="" alt="Profile Avatar" class="w-24 h-24 rounded-full object-cover border-4 border-theme shadow-lg">
+                    <label for="profilePicInput" class="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-theme text-white flex items-center justify-center cursor-pointer shadow hover:scale-110 transition" title="เปลี่ยนรูปโปรไฟล์">
+                        <i class="fa-solid fa-camera text-xs"></i>
+                    </label>
+                    <input type="file" id="profilePicInput" accept="image/*" onchange="handleProfilePicUpload(event)" class="hidden">
+                </div>
+                <h3 class="text-xl font-bold text-gray-900" id="profileModalUsername">ชื่อผู้ใช้</h3>
+                <p class="text-xs text-gray-500 mt-1">อัปโหลดรูปโปรไฟล์ (รองรับภาพทุกนามสกุล เช่น PNG, JPG, WEBP, GIF, SVG)</p>
+            </div>
+
+            <div class="space-y-3">
+                <button onclick="document.getElementById('profilePicInput').click()" class="w-full py-3 rounded-xl btn-theme font-bold text-sm shadow-md flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-upload"></i> เลือกรูปภาพจากเครื่อง
+                </button>
+                <button onclick="removeProfilePic()" class="w-full py-2.5 rounded-xl bg-red-50 text-red-600 hover:bg-red-100 font-medium text-xs transition">
+                    <i class="fa-solid fa-trash mr-1"></i> ลบรูปโปรไฟล์ (ใช้รูปเริ่มต้น)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 5: Google Drive & Google Docs Link Settings Modal -->
+    <div id="driveDocModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl relative">
+            <div class="flex items-center justify-between pb-4 border-b border-gray-200 mb-4">
+                <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+                    <i class="fa-brands fa-google-drive text-emerald-600 text-xl"></i> ตั้งค่า Google Drive & Google Docs
+                </h3>
+                <button onclick="closeModal('driveDocModal')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+
+            <form onsubmit="saveDriveDocsUrls(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ลิงก์โฟลเดอร์ Google Drive (เก็บไฟล์งาน)</label>
+                    <input type="url" id="editDriveUrl" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs" placeholder="https://drive.google.com/drive/folders/...">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ลิงก์ Google Docs / Sheets (เก็บสมุดรวบรวมลิงก์งาน)</label>
+                    <input type="url" id="editDocsUrl" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs" placeholder="https://docs.google.com/document/d/... หรือ https://docs.google.com/spreadsheets/d/...">
+                </div>
+
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="closeModal('driveDocModal')" class="px-4 py-2 rounded-xl bg-gray-200 text-gray-700 font-medium text-xs">ยกเลิก</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl btn-theme font-bold text-xs shadow-md">บันทึกการตั้งค่า</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 6: Edit Hero Banner Section -->
+    <div id="editHeroModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl">
+            <div class="flex items-center justify-between pb-4 border-b border-gray-200 mb-4">
+                <h3 class="text-lg font-bold text-gray-900">แก้ไขข้อความสโลแกนหน้าแรก</h3>
+                <button onclick="closeModal('editHeroModal')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <form onsubmit="saveHeroSection(event)" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ข้อความ Badge หัวข้อ</label>
+                    <input type="text" id="editHeroBadge" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">หัวข้อหลัก (Title)</label>
+                    <input type="text" id="editHeroTitle" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">รายละเอียด (Description)</label>
+                    <textarea id="editHeroDesc" rows="3" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm"></textarea>
+                </div>
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="closeModal('editHeroModal')" class="px-4 py-2 rounded-xl bg-gray-200 text-gray-700 font-medium text-xs">ยกเลิก</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl btn-theme font-medium text-xs">บันทึก</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 7: Edit/Add Course Modal -->
+    <div id="editCourseModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl">
+            <div class="flex items-center justify-between pb-4 border-b border-gray-200 mb-4">
+                <h3 class="text-lg font-bold text-gray-900" id="courseModalTitle">แก้ไขเนื้อหาวิชา</h3>
+                <button onclick="closeModal('editCourseModal')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <form onsubmit="saveCourse(event)" class="space-y-3">
+                <input type="hidden" id="editCourseId">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ชื่อวิชา / บทเรียน</label>
+                    <input type="text" id="editCourseTitle" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">หมวดหมู่</label>
+                        <select id="editCourseCat" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm">
+                            <option value="tech">เทคโนโลยี & โค้ด</option>
+                            <option value="science">วิทยาศาสตร์</option>
+                            <option value="art">ศิลปะ & ดีไซน์</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ระดับความยาก</label>
+                        <input type="text" id="editCourseLevel" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">คำอธิบายวิชา</label>
+                    <textarea id="editCourseDesc" rows="3" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">รูปภาพ URL</label>
+                    <input type="url" id="editCourseImage" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm">
+                </div>
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="closeModal('editCourseModal')" class="px-4 py-2 rounded-xl bg-gray-200 text-gray-700 font-medium text-xs">ยกเลิก</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl btn-theme font-medium text-xs">บันทึก</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 8: Edit/Add Pathway Step Modal -->
+    <div id="editPathwayModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl">
+            <div class="flex items-center justify-between pb-4 border-b border-gray-200 mb-4">
+                <h3 class="text-lg font-bold text-gray-900" id="pathwayModalTitle">จัดการขั้นตอนการเรียนรู้</h3>
+                <button onclick="closeModal('editPathwayModal')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <form onsubmit="savePathway(event)" class="space-y-3">
+                <input type="hidden" id="editPathwayStep">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ชื่อขั้นตอน</label>
+                    <input type="text" id="editPathwayTitle" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">รายละเอียดขั้นตอน</label>
+                    <textarea id="editPathwayDesc" rows="3" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">คลาส FontAwesome ไอคอน (เช่น fa-book-bookmark)</label>
+                    <input type="text" id="editPathwayIcon" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm">
+                </div>
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="closeModal('editPathwayModal')" class="px-4 py-2 rounded-xl bg-gray-200 text-gray-700 font-medium text-xs">ยกเลิก</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl btn-theme font-medium text-xs">บันทึก</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 9: Edit/Add Media Item Modal -->
+    <div id="editMediaModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl">
+            <div class="flex items-center justify-between pb-4 border-b border-gray-200 mb-4">
+                <h3 class="text-lg font-bold text-gray-900" id="mediaModalTitle">จัดการสื่อการเรียนรู้</h3>
+                <button onclick="closeModal('editMediaModal')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <form onsubmit="saveMedia(event)" class="space-y-3">
+                <input type="hidden" id="editMediaId">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ชื่อสื่อมัลติมีเดีย</label>
+                    <input type="text" id="editMediaTitle" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ประเภทสื่อ</label>
+                        <select id="editMediaType" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm">
+                            <option value="video">วิดีโอ (video)</option>
+                            <option value="doc">เอกสาร / E-Book (doc)</option>
+                            <option value="audio">คลิปเสียง / Podcast (audio)</option>
+                            <option value="img">อินโฟกราฟิก / รูปภาพ (img)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ไอคอน (เช่น fa-circle-play)</label>
+                        <input type="text" id="editMediaIcon" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ลิงก์เปิดสื่อ (URL)</label>
+                    <input type="url" id="editMediaLink" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm">
+                </div>
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="closeModal('editMediaModal')" class="px-4 py-2 rounded-xl bg-gray-200 text-gray-700 font-medium text-xs">ยกเลิก</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl btn-theme font-medium text-xs">บันทึก</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 10: Edit/Add Quiz Modal -->
+    <div id="editQuizModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl">
+            <div class="flex items-center justify-between pb-4 border-b border-gray-200 mb-4">
+                <h3 class="text-lg font-bold text-gray-900" id="quizModalTitle">จัดการข้อสอบแบบทดสอบ</h3>
+                <button onclick="closeModal('editQuizModal')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <form onsubmit="saveQuiz(event)" class="space-y-3">
+                <input type="hidden" id="editQuizIndex">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">คำถาม</label>
+                    <input type="text" id="editQuizQuestion" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm">
+                </div>
+                <div class="space-y-2">
+                    <label class="block text-xs font-bold text-gray-700 uppercase">ตัวเลือก 4 ข้อ</label>
+                    <input type="text" id="editQuizOpt0" required class="w-full px-3 py-1.5 rounded-lg border border-gray-300 text-xs" placeholder="ตัวเลือกที่ 1">
+                    <input type="text" id="editQuizOpt1" required class="w-full px-3 py-1.5 rounded-lg border border-gray-300 text-xs" placeholder="ตัวเลือกที่ 2">
+                    <input type="text" id="editQuizOpt2" required class="w-full px-3 py-1.5 rounded-lg border border-gray-300 text-xs" placeholder="ตัวเลือกที่ 3">
+                    <input type="text" id="editQuizOpt3" required class="w-full px-3 py-1.5 rounded-lg border border-gray-300 text-xs" placeholder="ตัวเลือกที่ 4">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ตัวเลือกที่ถูกต้อง (1-4)</label>
+                    <select id="editQuizCorrect" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-sm">
+                        <option value="0">ตัวเลือกที่ 1</option>
+                        <option value="1">ตัวเลือกที่ 2</option>
+                        <option value="2">ตัวเลือกที่ 3</option>
+                        <option value="3">ตัวเลือกที่ 4</option>
+                    </select>
+                </div>
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="closeModal('editQuizModal')" class="px-4 py-2 rounded-xl bg-gray-200 text-gray-700 font-medium text-xs">ยกเลิก</button>
+                    <button type="submit" class="px-4 py-2 rounded-xl btn-theme font-medium text-xs">บันทึก</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL 11: Google Sheet Webhook Setup -->
+    <div id="googleSheetModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-6 shadow-2xl">
+            <div class="flex items-center justify-between pb-4 border-b border-gray-200 mb-4">
+                <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+                    <i class="fa-solid fa-table text-emerald-600"></i> ตั้งค่าเชื่อมต่อ Google Sheets API
+                </h3>
+                <button onclick="closeModal('googleSheetModal')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            
+            <div class="space-y-4 text-xs sm:text-sm text-gray-600">
+                <p>บันทึกข้อมูลถาวรด้วย <strong>Google Apps Script Webhook API</strong> เพื่อให้ข้อมูลส่งเข้า Google Sheet โดยตรง</p>
+                <div>
+                    <label class="block font-bold text-gray-800 mb-1">Google Apps Script Webhook URL:</label>
+                    <input type="url" id="webhookUrlInput" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 font-mono text-xs" placeholder="https://script.google.com/macros/s/.../exec">
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-end gap-2">
+                <button onclick="closeModal('googleSheetModal')" class="px-4 py-2 rounded-xl bg-gray-200 text-gray-700 text-xs font-medium">ปิด</button>
+                <button onclick="saveWebhookUrl()" class="px-5 py-2 rounded-xl btn-theme text-xs font-bold">บันทึก URL</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 12: GitHub Token Direct Upload Setup -->
+    <div id="githubModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl relative">
+            <div class="flex items-center justify-between pb-4 border-b border-gray-200 mb-4">
+                <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
+                    <i class="fa-brands fa-github text-amber-500 text-xl"></i> ตั้งค่า GitHub Personal Access Token
+                </h3>
+                <button onclick="closeModal('githubModal')" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+
+            <p class="text-xs text-gray-500 mb-4 leading-relaxed">
+                ใส่ GitHub Personal Access Token (PAT) และชื่อ Repository เมื่อคุณแก้ไขข้อมูลเสร็จ ระบบจะอัปเดตไฟล์ <strong>index.html</strong> ขึ้น GitHub โดยตรงทันที!
+            </p>
+
+            <form onsubmit="saveGitHubSettings(event)" class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 uppercase mb-1">GitHub Access Token (PAT) <span class="text-red-500">*</span></label>
+                    <input type="password" id="ghTokenInput" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 font-mono text-xs" placeholder="ghp_... หรือ github_pat_...">
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">GitHub Owner/Username <span class="text-red-500">*</span></label>
+                        <input type="text" id="ghOwnerInput" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs" placeholder="เช่น Bank4481">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Repository Name <span class="text-red-500">*</span></label>
+                        <input type="text" id="ghRepoInput" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs" placeholder="เช่น edulearn-hub">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">ชื่อไฟล์ (Path)</label>
+                        <input type="text" id="ghPathInput" value="index.html" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Branch Name</label>
+                        <input type="text" id="ghBranchInput" value="main" required class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 text-xs">
+                    </div>
+                </div>
+
+                <div class="pt-3 flex justify-end gap-2">
+                    <button type="button" onclick="closeModal('githubModal')" class="px-4 py-2 rounded-xl bg-gray-200 text-gray-700 font-medium text-xs">ปิด</button>
+                    <button type="submit" class="px-5 py-2 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-slate-800 transition">บันทึกการตั้งค่า</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast Box -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="glass-card bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-700">
+            <i class="fa-solid fa-circle-check text-emerald-400 text-xl" id="toastIcon"></i>
+            <span class="text-sm font-medium" id="toastMessage">แจ้งเตือนสำเร็จ</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-gray-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="space-y-3">
+                    <span class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-graduation-cap text-theme"></i> EduLearn Hub
+                    </span>
+                    <p class="text-xs leading-relaxed text-gray-400">
+                        นวัตกรรมเว็บไซต์สื่อการเรียนรู้แบบโต้ตอบออนไลน์ รองรับการส่งงานเข้า Google Drive และ Google Docs / Sheets
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-sm font-bold text-white mb-3">เมนูหลัก</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#main-area" class="hover:text-white transition">พื้นที่หลักของการเรียนรู้</a></li>
+                        <li><a href="#pathways" class="hover:text-white transition">เส้นทางการเรียนรู้</a></li>
+                        <li><a href="#media-library" class="hover:text-white transition">สื่อมัลติมีเดีย</a></li>
+                        <li><a href="#activities" class="hover:text-white transition">กิจกรรมทดสอบ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-sm font-bold text-white mb-3">สำหรับผู้ดูแล</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li><button onclick="openModal('adminAuthModal')" class="hover:text-white transition text-left"><i class="fa-solid fa-lock text-amber-400 mr-1"></i>เข้าสู่ระบบผู้ดูแล (Admin)</button></li>
+                        <li><button onclick="openModalDriveDoc()" class="hover:text-white transition text-left"><i class="fa-brands fa-google-drive text-emerald-400 mr-1"></i>ตั้งค่า Drive & Docs</button></li>
+                        <li><button onclick="openModal('googleSheetModal')" class="hover:text-white transition text-left"><i class="fa-solid fa-database text-emerald-400 mr-1"></i>เชื่อมต่อ Google Sheets</button></li>
+                        <li><button onclick="openModal('githubModal')" class="hover:text-white transition text-left"><i class="fa-brands fa-github text-amber-400 mr-1"></i>ตั้งค่า GitHub Sync Token</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-sm font-bold text-white mb-3">ข้อมูลระบบ</h5>
+                    <div class="text-xs space-y-2">
+                        <p><i class="fa-solid fa-user-shield text-gray-500 mr-1"></i> Admin User: <span class="text-amber-300">Bank4481</span></p>
+                        <p><i class="fa-solid fa-palette text-gray-500 mr-1"></i> ระบบธีมสี: Dynamic 12 Colors</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-6 text-center text-xs text-gray-500">
+                &copy; 2026 EduLearn Hub. สงวนลิขสิทธิ์ทั้งหมด. ออกแบบเพื่อการเรียนรู้อย่างสร้างสรรค์.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        /* INITIAL_APP_STATE_START */
+        const APP_STATE = {
+            isAdmin: false,
+            adminUser: "Bank4481",
+            adminPass: "Zx0949919283",
+            currentUser: null,
+            currentTheme: "emerald",
+            googleDriveUrl: "https://drive.google.com",
+            googleDocsUrl: "https://docs.google.com",
+            webhookUrl: "",
+            currentQuizIndex: 0,
+            quizScore: 0,
+            courses: [
+                {
+                    id: 1,
+                    title: "การเขียนโปรแกรมด้วย Python เบื้องต้น",
+                    category: "tech",
+                    level: "เริ่มต้น",
+                    desc: "เรียนรู้ไวยากรณ์พื้นฐาน ตัวแปร การสร้างเงื่อนไข และฟังก์ชันเพื่อประยุกต์ใช้งาน",
+                    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=600&q=80",
+                    lessons: 8
+                },
+                {
+                    id: 2,
+                    title: "การออกแบบ UI/UX ด้วย Figma",
+                    category: "art",
+                    level: "ปานกลาง",
+                    desc: "หลักการออกแบบอินเทอร์เฟซผู้ใช้ โทนสี Wireframe และการสร้าง Prototype สำหรับแอปพลิเคชัน",
+                    image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=600&q=80",
+                    lessons: 6
+                },
+                {
+                    id: 3,
+                    title: "วิทยาศาสตร์ข้อมูลและการวิเคราะห์ (Data Science)",
+                    category: "science",
+                    level: "ขั้นสูง",
+                    desc: "ทำความเข้าใจกับการจัดการข้อมูลขนาดใหญ่ การทำ Data Visualization และสถิติเบื้องต้น",
+                    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
+                    lessons: 10
+                }
+            ],
+            pathways: [
+                {
+                    step: 1,
+                    title: "ปูพื้นฐานแนวคิดดิจิทัล",
+                    desc: "ทำความเข้าใจตรรกะคอมพิวเตอร์และเครื่องมือการเรียนรู้ออนไลน์",
+                    icon: "fa-seedling"
+                },
+                {
+                    step: 2,
+                    title: "ฝึกปฏิบัติตามบทเรียน",
+                    desc: "ลงมือทำโจทย์ฝึกหัด รับชมวิดีโอตัวอย่าง และทบทวนความเข้าใจ",
+                    icon: "fa-code"
+                },
+                {
+                    step: 3,
+                    title: "ทดสอบและประเมินผล",
+                    desc: "ทำแบบทดสอบวัดทักษะ และสร้างชิ้นงานประยุกต์ส่งผ่าน Google Drive",
+                    icon: "fa-trophy"
+                }
+            ],
+            media: [
+                {
+                    id: 101,
+                    title: "วิดีโอแนะนำการเรียนรู้ยุคใหม่ 2026",
+                    type: "video",
+                    icon: "fa-circle-play",
+                    link: "https://youtube.com",
+                    color: "text-red-500"
+                },
+                {
+                    id: 102,
+                    title: "คู่มือสรุปย่อการเขียนโค้ด HTML/CSS (PDF)",
+                    type: "doc",
+                    icon: "fa-file-pdf",
+                    link: "https://drive.google.com",
+                    color: "text-blue-500"
+                },
+                {
+                    id: 103,
+                    title: "Podcast: เทคนิคการสร้างแรงบันดาลใจในการเรียน",
+                    type: "audio",
+                    icon: "fa-headphones",
+                    link: "https://spotify.com",
+                    color: "text-emerald-500"
+                },
+                {
+                    id: 104,
+                    title: "อินโฟกราฟิก: ขั้นตอนการทำงานดิจิทัล",
+                    type: "img",
+                    icon: "fa-image",
+                    link: "https://canva.com",
+                    color: "text-amber-500"
+                }
+            ],
+            quizzes: [
+                {
+                    question: "ภาษาใดเหมาะสำหรับการเขียนสคริปต์บนเว็บฝั่ง Client มากที่สุด?",
+                    options: ["JavaScript", "Python", "C++", "SQL"],
+                    correct: 0
+                },
+                {
+                    question: "เครื่องมือใดนิยมใช้จัดเก็บไฟล์งานออนไลน์ร่วมกันมากที่สุด?",
+                    options: ["Google Drive", "Notepad", "Paint", "Calculator"],
+                    correct: 0
+                }
+            ],
+            chats: [
+                {
+                    id: 1,
+                    user: "คุณครูผู้สอน",
+                    text: "ยินดีต้อนรับนักเรียนทุกคนเข้าสู่ EduLearn Hub ครับ! สอบถามข้อสงสัยได้ตลอดเวลานะครับ",
+                    time: "09:00 น.",
+                    isTeacher: true
+                }
+            ],
+            submissions: []
+        };
+        /* INITIAL_APP_STATE_END */
+
+        // 12 Preset Color Palette Configurations
+        const THEME_PALETTES = {
+            emerald: { name: 'Emerald Green (เขียวมรกต)', 50: '#ecfdf5', 100: '#d1fae5', 200: '#a7f3d0', 500: '#10b981', 600: '#059669', 700: '#047857', 800: '#065f46', 900: '#064e3b' },
+            blue: { name: 'Ocean Blue (น้ำเงินมหาสมุทร)', 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a' },
+            indigo: { name: 'Deep Indigo (ครามลุ่มลึก)', 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81' },
+            purple: { name: 'Royal Purple (ม่วงลาเวนเดอร์)', 50: '#faf5ff', 100: '#f3e8ff', 200: '#e9d5ff', 500: '#a855f7', 600: '#9333ea', 700: '#7e22ce', 800: '#6b21a8', 900: '#581c87' },
+            pink: { name: 'Blush Pink (ชมพูสดใส)', 50: '#fdf2f8', 100: '#fce7f3', 200: '#fbcfe8', 500: '#ec4899', 600: '#db2777', 700: '#be185d', 800: '#9d174d', 900: '#831843' },
+            rose: { name: 'Rose Red (แดงกุหลาบ)', 50: '#fff1f2', 100: '#ffe4e6', 200: '#fecdd3', 500: '#f43f5e', 600: '#e11d48', 700: '#be123c', 800: '#9f1239', 900: '#881337' },
+            amber: { name: 'Warm Amber (ส้มอำพัน)', 50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 500: '#f59e0b', 600: '#d97706', 700: '#b45309', 800: '#92400e', 900: '#78350f' },
+            teal: { name: 'Teal Cyan (ฟ้าอมเขียว)', 50: '#f0fdf4', 100: '#ccfbf1', 200: '#99f6e4', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e', 800: '#115e59', 900: '#134e4a' },
+            cyan: { name: 'Electric Cyan (ฟ้าสว่าง)', 50: '#ecfeff', 100: '#cffaff', 200: '#a5f3fc', 500: '#06b6d4', 600: '#0891b2', 700: '#0e7490', 800: '#155e75', 900: '#164e63' },
+            slate: { name: 'Midnight Slate (เทาเข้ม)', 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 500: '#64748b', 600: '#475569', 700: '#334155', 800: '#1e293b', 900: '#0f172a' },
+            orange: { name: 'Sunset Orange (ส้มพระอาทิตย์)', 50: '#fff7ed', 100: '#ffedd5', 200: '#fed7aa', 500: '#f97316', 600: '#ea580c', 700: '#c2410c', 800: '#9a3412', 900: '#7c2d12' },
+            lime: { name: 'Vibrant Lime (เขียวมะนาว)', 50: '#f7fee7', 100: '#ecfccb', 200: '#d9f99d', 500: '#84cc16', 600: '#65a30d', 700: '#4d7c0f', 800: '#3f6212', 900: '#365314' }
+        };
+
+        window.onload = function() {
+            loadSavedState();
+            applyTheme(APP_STATE.currentTheme);
+            renderThemeSwatches();
+            renderAuthHeader();
+            renderCourses();
+            renderPathways();
+            renderMedia();
+            renderQuiz();
+            renderChats();
+            renderSubmissions();
+            renderDriveDocsLinks();
+            updateStatsCounters();
+            loadGitHubSettings();
+        };
+
+        function loadSavedState() {
+            const savedCourses = localStorage.getItem('edulearn_courses');
+            if (savedCourses) APP_STATE.courses = JSON.parse(savedCourses);
+
+            const savedPathways = localStorage.getItem('edulearn_pathways');
+            if (savedPathways) APP_STATE.pathways = JSON.parse(savedPathways);
+
+            const savedMedia = localStorage.getItem('edulearn_media');
+            if (savedMedia) APP_STATE.media = JSON.parse(savedMedia);
+
+            const savedQuizzes = localStorage.getItem('edulearn_quizzes');
+            if (savedQuizzes) APP_STATE.quizzes = JSON.parse(savedQuizzes);
+
+            const savedChats = localStorage.getItem('edulearn_chats');
+            if (savedChats) APP_STATE.chats = JSON.parse(savedChats);
+
+            const savedSubmissions = localStorage.getItem('edulearn_submissions');
+            if (savedSubmissions) APP_STATE.submissions = JSON.parse(savedSubmissions);
+
+            const savedDrive = localStorage.getItem('edulearn_drive_url');
+            if (savedDrive) APP_STATE.googleDriveUrl = savedDrive;
+
+            const savedDocs = localStorage.getItem('edulearn_docs_url');
+            if (savedDocs) APP_STATE.googleDocsUrl = savedDocs;
+
+            const savedUser = localStorage.getItem('edulearn_currentUser');
+            if (savedUser) APP_STATE.currentUser = savedUser;
+
+            const savedTheme = localStorage.getItem('edulearn_theme');
+            if (savedTheme && THEME_PALETTES[savedTheme]) APP_STATE.currentTheme = savedTheme;
+
+            const savedWebhook = localStorage.getItem('edulearn_webhook');
+            if (savedWebhook) APP_STATE.webhookUrl = savedWebhook;
+        }
+
+        function applyTheme(themeKey) {
+            const palette = THEME_PALETTES[themeKey] || THEME_PALETTES.emerald;
+            APP_STATE.currentTheme = themeKey;
+            localStorage.setItem('edulearn_theme', themeKey);
+
+            const root = document.documentElement;
+            root.style.setProperty('--color-50', palette[50]);
+            root.style.setProperty('--color-100', palette[100]);
+            root.style.setProperty('--color-200', palette[200]);
+            root.style.setProperty('--color-500', palette[500]);
+            root.style.setProperty('--color-600', palette[600]);
+            root.style.setProperty('--color-700', palette[700]);
+            root.style.setProperty('--color-800', palette[800]);
+            root.style.setProperty('--color-900', palette[900]);
+        }
+
+        function renderThemeSwatches() {
+            const grid = document.getElementById('themeSwatchesGrid');
+            grid.innerHTML = '';
+
+            Object.keys(THEME_PALETTES).forEach(key => {
+                const pal = THEME_PALETTES[key];
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.onclick = () => { applyTheme(key); renderThemeSwatches(); };
+                btn.className = `p-3 rounded-2xl border text-left flex items-center gap-2.5 transition ${APP_STATE.currentTheme === key ? 'border-gray-900 ring-2 ring-gray-900 shadow-md' : 'border-gray-200 hover:border-gray-400'}`;
+                
+                btn.innerHTML = `
+                    <div class="w-6 h-6 rounded-full flex-shrink-0 shadow" style="background-color: ${pal[600]}"></div>
+                    <span class="text-xs font-semibold text-gray-800 truncate">${pal.name.split(' ')[0]}</span>
+                `;
+                grid.appendChild(btn);
+            });
+        }
+
+        function getUserAvatar(username) {
+            if (!username) return 'https://placehold.co/100x100/10b981/ffffff?text=User';
+            const avatars = JSON.parse(localStorage.getItem('edulearn_user_avatars') || '{}');
+            if (avatars[username]) {
+                return avatars[username];
+            }
+            const initial = username.charAt(0).toUpperCase();
+            return `https://placehold.co/100x100/0f172a/ffffff?text=${encodeURIComponent(initial)}`;
+        }
+
+        function openProfileModal() {
+            const user = APP_STATE.currentUser || (APP_STATE.isAdmin ? APP_STATE.adminUser : 'ผู้ใช้');
+            document.getElementById('profileModalUsername').innerText = user;
+            document.getElementById('profileAvatarPreview').src = getUserAvatar(user);
+            openModal('profileModal');
+        }
+
+        function handleProfilePicUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const user = APP_STATE.currentUser || (APP_STATE.isAdmin ? APP_STATE.adminUser : null);
+            if (!user) {
+                showToast("กรุณาเข้าสู่ระบบก่อนอัปโหลดรูปโปรไฟล์", "error");
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const dataUrl = e.target.result;
+                let avatars = JSON.parse(localStorage.getItem('edulearn_user_avatars') || '{}');
+                avatars[user] = dataUrl;
+                localStorage.setItem('edulearn_user_avatars', JSON.stringify(avatars));
+
+                document.getElementById('profileAvatarPreview').src = dataUrl;
+                renderAuthHeader();
+                renderChats();
+                showToast("อัปโหลดและเปลี่ยนรูปโปรไฟล์เรียบร้อยแล้ว!");
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function removeProfilePic() {
+            const user = APP_STATE.currentUser || (APP_STATE.isAdmin ? APP_STATE.adminUser : null);
+            if (!user) return;
+
+            let avatars = JSON.parse(localStorage.getItem('edulearn_user_avatars') || '{}');
+            delete avatars[user];
+            localStorage.setItem('edulearn_user_avatars', JSON.stringify(avatars));
+
+            document.getElementById('profileAvatarPreview').src = getUserAvatar(user);
+            renderAuthHeader();
+            renderChats();
+            showToast("ลบรูปโปรไฟล์เรียบร้อย");
+        }
+
+        function renderAuthHeader() {
+            const container = document.getElementById('authContainer');
+            container.innerHTML = '';
+
+            if (APP_STATE.isAdmin) {
+                const avatarSrc = getUserAvatar(APP_STATE.adminUser);
+                container.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <button onclick="openProfileModal()" class="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-amber-100 text-amber-900 hover:bg-amber-200 transition text-xs font-bold shadow-sm" title="จัดการโปรไฟล์ผู้ดูแล">
+                            <img src="${avatarSrc}" class="w-6 h-6 rounded-full object-cover border border-amber-400">
+                            <i class="fa-solid fa-crown text-amber-600"></i> Admin (${escapeHtml(APP_STATE.adminUser)})
+                        </button>
+                        <button onclick="logoutAdmin()" class="p-2 rounded-xl text-gray-400 hover:text-red-500 hover:bg-red-50 text-xs" title="ออกจากระบบผู้ดูแล">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </button>
+                    </div>
+                `;
+                document.getElementById('adminRibbon').classList.remove('hidden');
+            } else if (APP_STATE.currentUser) {
+                const avatarSrc = getUserAvatar(APP_STATE.currentUser);
+                container.innerHTML = `
+                    <div class="flex items-center gap-2">
+                        <button onclick="openProfileModal()" class="px-2.5 py-1.5 rounded-xl bg-theme-100 text-theme-900 hover:bg-theme-200 text-xs font-semibold flex items-center gap-2 transition shadow-sm" title="จัดการโปรไฟล์">
+                            <img src="${avatarSrc}" class="w-6 h-6 rounded-full object-cover border border-theme">
+                            <span>${escapeHtml(APP_STATE.currentUser)}</span>
+                        </button>
+                        <button onclick="logoutUser()" class="p-2 rounded-xl text-gray-400 hover:text-red-500 hover:bg-red-50 text-xs" title="ออกจากระบบ">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                        </button>
+                    </div>
+                `;
+                document.getElementById('adminRibbon').classList.add('hidden');
+            } else {
+                container.innerHTML = `
+                    <button onclick="openModal('authModal')" class="btn-theme px-3 py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-1.5 shadow-md">
+                        <i class="fa-solid fa-user-plus"></i> สมัครสมาชิก / เข้าสู่ระบบ
+                    </button>
+                    <button onclick="openModal('adminAuthModal')" class="px-3 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold text-xs sm:text-sm flex items-center gap-1.5 shadow-md transition" title="เข้าสู่ระบบผู้ดูแล (Admin)">
+                        <i class="fa-solid fa-shield-halved"></i> ผู้ดูแลระบบ
+                    </button>
+                `;
+                document.getElementById('adminRibbon').classList.add('hidden');
+            }
+
+            renderAdminSectionButtons();
+        }
+
+        function renderAdminSectionButtons() {
+            const courseBtn = document.getElementById('adminCourseBtn');
+            const pathwayBtn = document.getElementById('adminPathwayBtn');
+            const mediaBtn = document.getElementById('adminMediaBtn');
+            const quizBtn = document.getElementById('adminQuizBtn');
+
+            if (APP_STATE.isAdmin) {
+                if (courseBtn) courseBtn.innerHTML = `<button onclick="openAddCourseModal()" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 text-xs font-bold flex items-center gap-1.5 shadow transition whitespace-nowrap"><i class="fa-solid fa-plus"></i> เพิ่มวิชาใหม่</button>`;
+                if (pathwayBtn) pathwayBtn.innerHTML = `<button onclick="openAddPathwayModal()" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 text-xs font-bold inline-flex items-center gap-1.5 shadow transition"><i class="fa-solid fa-plus"></i> เพิ่มขั้นตอนเรียนรู้</button>`;
+                if (mediaBtn) mediaBtn.innerHTML = `<button onclick="openAddMediaModal()" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 text-xs font-bold flex items-center gap-1.5 shadow transition whitespace-nowrap"><i class="fa-solid fa-plus"></i> เพิ่มสื่อใหม่</button>`;
+                if (quizBtn) quizBtn.innerHTML = `<button onclick="openAddQuizModal()" class="px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 text-xs font-bold inline-flex items-center gap-1.5 shadow transition"><i class="fa-solid fa-plus"></i> เพิ่มข้อสอบใหม่</button>`;
+            } else {
+                if (courseBtn) courseBtn.innerHTML = '';
+                if (pathwayBtn) pathwayBtn.innerHTML = '';
+                if (mediaBtn) mediaBtn.innerHTML = '';
+                if (quizBtn) quizBtn.innerHTML = '';
+            }
+        }
+
+        function openModalDriveDoc() {
+            document.getElementById('editDriveUrl').value = APP_STATE.googleDriveUrl;
+            document.getElementById('editDocsUrl').value = APP_STATE.googleDocsUrl;
+            openModal('driveDocModal');
+        }
+
+        function saveDriveDocsUrls(e) {
+            e.preventDefault();
+            const dUrl = document.getElementById('editDriveUrl').value.trim();
+            const docUrl = document.getElementById('editDocsUrl').value.trim();
+
+            APP_STATE.googleDriveUrl = dUrl;
+            APP_STATE.googleDocsUrl = docUrl;
+
+            localStorage.setItem('edulearn_drive_url', dUrl);
+            localStorage.setItem('edulearn_docs_url', docUrl);
+
+            renderDriveDocsLinks();
+            closeModal('driveDocModal');
+            onAdminContentChanged("บันทึกการตั้งค่า Google Drive & Docs เรียบร้อยแล้ว!");
+        }
+
+        function switchAuthTab(tab) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const tabLoginBtn = document.getElementById('tabLoginBtn');
+            const tabRegisterBtn = document.getElementById('tabRegisterBtn');
+
+            if (!loginForm || !registerForm) return;
+
+            if (tab === 'login') {
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                if (tabLoginBtn) tabLoginBtn.className = "flex-1 py-3 text-sm font-bold border-b-2 border-theme text-theme transition";
+                if (tabRegisterBtn) tabRegisterBtn.className = "flex-1 py-3 text-sm font-bold border-b-2 border-transparent text-gray-400 hover:text-gray-600 transition";
+            } else {
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                if (tabRegisterBtn) tabRegisterBtn.className = "flex-1 py-3 text-sm font-bold border-b-2 border-theme text-theme transition";
+                if (tabLoginBtn) tabLoginBtn.className = "flex-1 py-3 text-sm font-bold border-b-2 border-transparent text-gray-400 hover:text-gray-600 transition";
+            }
+        }
+
+        function renderDriveDocsLinks() {
+            const btnDrive = document.getElementById('btnOpenGoogleDrive');
+            const btnDocs = document.getElementById('btnOpenGoogleDocs');
+            if (btnDrive) btnDrive.href = APP_STATE.googleDriveUrl || 'https://drive.google.com';
+            if (btnDocs) btnDocs.href = APP_STATE.googleDocsUrl || 'https://docs.google.com';
+        }
+
+        function handleUserRegister(e) {
+            e.preventDefault();
+            const u = document.getElementById('regUsername').value.trim();
+            const p = document.getElementById('regPassword').value;
+            const pc = document.getElementById('regPasswordConfirm').value;
+
+            if (p !== pc) {
+                showToast("รหัสผ่านไม่ตรงกัน กรุณาตรวจสอบอีกครั้ง", "error");
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('edulearn_registered_users') || '{}');
+            if (users[u]) {
+                showToast("ชื่อผู้ใช้นี้มีในระบบแล้ว กรุณาใช้ชื่ออื่น", "error");
+                return;
+            }
+
+            users[u] = p;
+            localStorage.setItem('edulearn_registered_users', JSON.stringify(users));
+
+            APP_STATE.currentUser = u;
+            localStorage.setItem('edulearn_currentUser', u);
+
+            renderAuthHeader();
+            closeModal('authModal');
+            showToast(`สมัครสมาชิกเรียบร้อย ยินดีต้อนรับคุณ ${u}!`);
+        }
+
+        function handleUserLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('loginUsername').value.trim();
+            const p = document.getElementById('loginPassword').value;
+
+            if (u === APP_STATE.adminUser && p === APP_STATE.adminPass) {
+                APP_STATE.isAdmin = true;
+                APP_STATE.currentUser = u;
+                renderAuthHeader();
+                renderCourses();
+                renderPathways();
+                renderMedia();
+                renderQuiz();
+                closeModal('authModal');
+                showToast("เข้าสู่ระบบในฐานะผู้ดูแลระบบ (Admin) แล้ว!");
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('edulearn_registered_users') || '{}');
+            if (users[u] && users[u] === p) {
+                APP_STATE.currentUser = u;
+                localStorage.setItem('edulearn_currentUser', u);
+                renderAuthHeader();
+                closeModal('authModal');
+                showToast(`ยินดีต้อนรับกลับ ${u}`);
+            } else {
+                showToast("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง", "error");
+            }
+        }
+
+        function logoutUser() {
+            APP_STATE.currentUser = null;
+            APP_STATE.isAdmin = false;
+            localStorage.removeItem('edulearn_currentUser');
+            renderAuthHeader();
+            renderCourses();
+            renderPathways();
+            renderMedia();
+            renderQuiz();
+            showToast("ออกจากระบบเรียบร้อยแล้ว");
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('adminUser').value.trim();
+            const p = document.getElementById('adminPass').value.trim();
+
+            if (u === APP_STATE.adminUser && p === APP_STATE.adminPass) {
+                APP_STATE.isAdmin = true;
+                APP_STATE.currentUser = u;
+                renderAuthHeader();
+                renderCourses();
+                renderPathways();
+                renderMedia();
+                renderQuiz();
+                closeModal('adminAuthModal');
+                showToast("สิทธิ์ผู้ดูแลระบบปลดล็อกแล้ว (Admin Mode Enabled)");
+            } else {
+                showToast("ชื่อผู้ใช้หรือรหัสผ่านผู้ดูแลระบบไม่ถูกต้อง!", "error");
+            }
+        }
+
+        function logoutAdmin() {
+            APP_STATE.isAdmin = false;
+            renderAuthHeader();
+            renderCourses();
+            renderPathways();
+            renderMedia();
+            renderQuiz();
+            showToast("ออกจากระบบผู้ดูแลเรียบร้อย");
+        }
+
+        function renderCourses(filterCat = 'all') {
+            const grid = document.getElementById('coursesGrid');
+            grid.innerHTML = '';
+
+            const filtered = filterCat === 'all' ? APP_STATE.courses : APP_STATE.courses.filter(c => c.category === filterCat);
+
+            filtered.forEach(c => {
+                const card = document.createElement('div');
+                card.className = "glass-card rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 flex flex-col justify-between group relative border border-gray-200/80";
+                
+                card.innerHTML = `
+                    <div>
+                        <div class="relative h-48 overflow-hidden bg-gray-200">
+                            <img src="${c.image}" alt="${escapeHtml(c.title)}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-gray-800 shadow-sm">
+                                ${c.level}
+                            </div>
+                            ${APP_STATE.isAdmin ? `
+                                <div class="absolute top-3 right-3 flex gap-1">
+                                    <button onclick="openEditCourseModal(${c.id})" class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center hover:bg-amber-600 shadow" title="แก้ไขวิชา"><i class="fa-solid fa-pen text-xs"></i></button>
+                                    <button onclick="deleteCourse(${c.id})" class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 shadow" title="ลบวิชา"><i class="fa-solid fa-trash text-xs"></i></button>
+                                </div>
+                            ` : ''}
+                        </div>
+                        <div class="p-6">
+                            <h4 class="text-lg font-bold text-gray-900 group-hover:text-theme transition leading-snug">${escapeHtml(c.title)}</h4>
+                            <p class="text-xs text-gray-500 mt-2 line-clamp-2 leading-relaxed">${escapeHtml(c.desc)}</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2 border-t border-gray-100 flex items-center justify-between">
+                        <span class="text-xs font-medium text-gray-400"><i class="fa-solid fa-book-bookmark text-theme mr-1"></i> ${c.lessons} บทเรียน</span>
+                        <button onclick="showToast('กำลังเปิดบทเรียน: ${escapeHtml(c.title)}')" class="btn-theme px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 shadow">
+                            เข้าเรียนรู้ <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterCourses(cat) {
+            document.querySelectorAll('#courseCategoryFilters button').forEach(btn => {
+                if (btn.dataset.cat === cat) {
+                    btn.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-theme-600 text-white shadow-sm transition filter-btn active";
+                } else {
+                    btn.className = "px-4 py-2 rounded-xl text-xs sm:text-sm font-medium bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 transition filter-btn";
+                }
+            });
+            renderCourses(cat);
+        }
+
+        function openEditCourseModal(id) {
+            const course = APP_STATE.courses.find(c => c.id === id);
+            if (!course) return;
+
+            document.getElementById('courseModalTitle').innerText = "แก้ไขเนื้อหาวิชา";
+            document.getElementById('editCourseId').value = course.id;
+            document.getElementById('editCourseTitle').value = course.title;
+            document.getElementById('editCourseCat').value = course.category;
+            document.getElementById('editCourseLevel').value = course.level;
+            document.getElementById('editCourseDesc').value = course.desc;
+            document.getElementById('editCourseImage').value = course.image;
+
+            openModal('editCourseModal');
+        }
+
+        function openAddCourseModal() {
+            document.getElementById('courseModalTitle').innerText = "เพิ่มรายวิชาใหม่";
+            document.getElementById('editCourseId').value = "";
+            document.getElementById('editCourseTitle').value = "";
+            document.getElementById('editCourseDesc').value = "";
+            document.getElementById('editCourseImage').value = "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80";
+            openModal('editCourseModal');
+        }
+
+        function saveCourse(e) {
+            e.preventDefault();
+            const id = document.getElementById('editCourseId').value;
+            const title = document.getElementById('editCourseTitle').value.trim();
+            const cat = document.getElementById('editCourseCat').value;
+            const level = document.getElementById('editCourseLevel').value.trim() || 'ทุกระดับ';
+            const desc = document.getElementById('editCourseDesc').value.trim();
+            const image = document.getElementById('editCourseImage').value.trim();
+
+            if (id) {
+                const idx = APP_STATE.courses.findIndex(c => c.id == id);
+                if (idx !== -1) {
+                    APP_STATE.courses[idx] = { ...APP_STATE.courses[idx], title, category: cat, level, desc, image };
+                }
+            } else {
+                APP_STATE.courses.unshift({ id: Date.now(), title, category: cat, level, desc, image, lessons: 5 });
+            }
+
+            localStorage.setItem('edulearn_courses', JSON.stringify(APP_STATE.courses));
+            renderCourses();
+            updateStatsCounters();
+            closeModal('editCourseModal');
+            onAdminContentChanged("บันทึกข้อมูลวิชาเรียบร้อยแล้ว!");
+        }
+
+        function deleteCourse(id) {
+            if (!APP_STATE.isAdmin) return;
+            APP_STATE.courses = APP_STATE.courses.filter(c => c.id !== id);
+            localStorage.setItem('edulearn_courses', JSON.stringify(APP_STATE.courses));
+            renderCourses();
+            updateStatsCounters();
+            onAdminContentChanged("ลบวิชาเรียบร้อย");
+        }
+
+        function renderPathways() {
+            const container = document.getElementById('pathwaysContainer');
+            container.innerHTML = '';
+
+            APP_STATE.pathways.forEach((p, idx) => {
+                const isEven = idx % 2 === 0;
+                const wrapper = document.createElement('div');
+                wrapper.className = `flex flex-col md:flex-row items-center justify-between ${isEven ? '' : 'md:flex-row-reverse'} gap-6 relative group`;
+                
+                wrapper.innerHTML = `
+                    <div class="w-full md:w-5/12 ${isEven ? 'text-left md:text-right' : 'text-left'}">
+                        <div class="glass-card p-6 rounded-3xl shadow-lg border border-gray-200 relative">
+                            ${APP_STATE.isAdmin ? `
+                                <div class="absolute top-3 right-3 flex gap-1 z-20">
+                                    <button onclick="openEditPathwayModal(${p.step})" class="w-7 h-7 rounded-full bg-amber-500 text-white flex items-center justify-center hover:bg-amber-600 shadow" title="แก้ไขขั้นตอน"><i class="fa-solid fa-pen text-xs"></i></button>
+                                    <button onclick="deletePathway(${p.step})" class="w-7 h-7 rounded-full bg-red-600 text-white flex items-center justify-center hover:bg-red-700 shadow" title="ลบขั้นตอน"><i class="fa-solid fa-trash text-xs"></i></button>
+                                </div>
+                            ` : ''}
+                            <span class="text-xs font-bold text-theme uppercase tracking-wider">ขั้นตอนที่ ${p.step}</span>
+                            <h4 class="text-xl font-bold text-gray-900 mt-1">${escapeHtml(p.title)}</h4>
+                            <p class="text-xs text-gray-500 mt-2 leading-relaxed">${escapeHtml(p.desc)}</p>
+                        </div>
+                    </div>
+                    
+                    <div class="z-10 w-12 h-12 rounded-2xl bg-gradient-to-tr from-theme-600 to-theme-800 text-white flex items-center justify-center font-bold text-xl shadow-xl flex-shrink-0">
+                        <i class="fa-solid ${p.icon}"></i>
+                    </div>
+
+                    <div class="w-full md:w-5/12 hidden md:block"></div>
+                `;
+                container.appendChild(wrapper);
+            });
+        }
+
+        function openAddPathwayModal() {
+            document.getElementById('pathwayModalTitle').innerText = "เพิ่มขั้นตอนการเรียนรู้";
+            document.getElementById('editPathwayStep').value = "";
+            document.getElementById('editPathwayTitle').value = "";
+            document.getElementById('editPathwayDesc').value = "";
+            document.getElementById('editPathwayIcon').value = "fa-star";
+            openModal('editPathwayModal');
+        }
+
+        function openEditPathwayModal(step) {
+            const p = APP_STATE.pathways.find(item => item.step === step);
+            if (!p) return;
+            document.getElementById('pathwayModalTitle').innerText = "แก้ไขขั้นตอนการเรียนรู้";
+            document.getElementById('editPathwayStep').value = p.step;
+            document.getElementById('editPathwayTitle').value = p.title;
+            document.getElementById('editPathwayDesc').value = p.desc;
+            document.getElementById('editPathwayIcon').value = p.icon;
+            openModal('editPathwayModal');
+        }
+
+        function savePathway(e) {
+            e.preventDefault();
+            const step = document.getElementById('editPathwayStep').value;
+            const title = document.getElementById('editPathwayTitle').value.trim();
+            const desc = document.getElementById('editPathwayDesc').value.trim();
+            const icon = document.getElementById('editPathwayIcon').value.trim();
+
+            if (step) {
+                const idx = APP_STATE.pathways.findIndex(p => p.step == step);
+                if (idx !== -1) APP_STATE.pathways[idx] = { ...APP_STATE.pathways[idx], title, desc, icon };
+            } else {
+                const nextStep = APP_STATE.pathways.length + 1;
+                APP_STATE.pathways.push({ step: nextStep, title, desc, icon });
+            }
+
+            localStorage.setItem('edulearn_pathways', JSON.stringify(APP_STATE.pathways));
+            renderPathways();
+            closeModal('editPathwayModal');
+            onAdminContentChanged("บันทึกขั้นตอนการเรียนรู้เรียบร้อย!");
+        }
+
+        function deletePathway(step) {
+            if (!APP_STATE.isAdmin) return;
+            APP_STATE.pathways = APP_STATE.pathways.filter(p => p.step !== step);
+            APP_STATE.pathways.forEach((p, idx) => p.step = idx + 1);
+            localStorage.setItem('edulearn_pathways', JSON.stringify(APP_STATE.pathways));
+            renderPathways();
+            onAdminContentChanged("ลบขั้นตอนการเรียนรู้เรียบร้อย");
+        }
+
+        function renderMedia(filterText = '') {
+            const grid = document.getElementById('mediaGrid');
+            grid.innerHTML = '';
+
+            const list = filterText ? APP_STATE.media.filter(m => m.title.toLowerCase().includes(filterText.toLowerCase())) : APP_STATE.media;
+
+            list.forEach(m => {
+                const card = document.createElement('div');
+                card.className = "glass-card p-5 rounded-2xl border border-gray-200 shadow hover:shadow-lg transition flex flex-col justify-between relative group";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <i class="fa-solid ${m.icon} ${m.color || 'text-theme'} text-3xl"></i>
+                            <span class="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-gray-100 text-gray-600">${m.type}</span>
+                        </div>
+                        <h5 class="text-sm font-bold text-gray-900 line-clamp-2">${escapeHtml(m.title)}</h5>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                        ${APP_STATE.isAdmin ? `
+                            <div class="flex gap-1">
+                                <button onclick="openEditMediaModal(${m.id})" class="text-xs text-amber-600 hover:underline"><i class="fa-solid fa-pen"></i> แก้ไข</button>
+                                <button onclick="deleteMedia(${m.id})" class="text-xs text-red-600 hover:underline ml-2"><i class="fa-solid fa-trash"></i> ลบ</button>
+                            </div>
+                        ` : '<span></span>'}
+                        <a href="${m.link}" target="_blank" class="text-xs font-semibold text-theme hover:underline flex items-center gap-1">
+                            รับชม <i class="fa-solid fa-external-link text-[10px]"></i>
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function searchMedia() {
+            renderMedia(document.getElementById('mediaSearchInput').value);
+        }
+
+        function openAddMediaModal() {
+            document.getElementById('mediaModalTitle').innerText = "เพิ่มสื่อมัลติมีเดีย";
+            document.getElementById('editMediaId').value = "";
+            document.getElementById('editMediaTitle').value = "";
+            document.getElementById('editMediaType').value = "video";
+            document.getElementById('editMediaIcon').value = "fa-circle-play";
+            document.getElementById('editMediaLink').value = "https://youtube.com";
+            openModal('editMediaModal');
+        }
+
+        function openEditMediaModal(id) {
+            const m = APP_STATE.media.find(item => item.id === id);
+            if (!m) return;
+            document.getElementById('mediaModalTitle').innerText = "แก้ไขสื่อมัลติมีเดีย";
+            document.getElementById('editMediaId').value = m.id;
+            document.getElementById('editMediaTitle').value = m.title;
+            document.getElementById('editMediaType').value = m.type;
+            document.getElementById('editMediaIcon').value = m.icon;
+            document.getElementById('editMediaLink').value = m.link;
+            openModal('editMediaModal');
+        }
+
+        function saveMedia(e) {
+            e.preventDefault();
+            const id = document.getElementById('editMediaId').value;
+            const title = document.getElementById('editMediaTitle').value.trim();
+            const type = document.getElementById('editMediaType').value;
+            const icon = document.getElementById('editMediaIcon').value.trim();
+            const link = document.getElementById('editMediaLink').value.trim();
+
+            if (id) {
+                const idx = APP_STATE.media.findIndex(m => m.id == id);
+                if (idx !== -1) APP_STATE.media[idx] = { ...APP_STATE.media[idx], title, type, icon, link };
+            } else {
+                APP_STATE.media.unshift({ id: Date.now(), title, type, icon, link, color: 'text-theme' });
+            }
+
+            localStorage.setItem('edulearn_media', JSON.stringify(APP_STATE.media));
+            renderMedia();
+            updateStatsCounters();
+            closeModal('editMediaModal');
+            onAdminContentChanged("บันทึกข้อมูลสื่อเรียบร้อย!");
+        }
+
+        function deleteMedia(id) {
+            if (!APP_STATE.isAdmin) return;
+            APP_STATE.media = APP_STATE.media.filter(m => m.id !== id);
+            localStorage.setItem('edulearn_media', JSON.stringify(APP_STATE.media));
+            renderMedia();
+            updateStatsCounters();
+            onAdminContentChanged("ลบสื่อเรียบร้อย");
+        }
+
+        function renderQuiz() {
+            const quizContainer = document.getElementById('quizApp');
+            const q = APP_STATE.quizzes[APP_STATE.currentQuizIndex];
+
+            if (!q) {
+                quizContainer.innerHTML = `
+                    <div class="text-center py-8 space-y-4">
+                        <div class="w-20 h-20 rounded-full bg-amber-400/20 text-amber-300 flex items-center justify-center text-4xl mx-auto">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <h3 class="text-2xl font-extrabold text-white">ทดสอบความรู้เสร็จสิ้น!</h3>
+                        <p class="text-gray-300 text-sm">คุณทำคะแนนได้ <span class="text-amber-300 font-bold text-xl">${APP_STATE.quizScore}</span> จากทั้งหมด ${APP_STATE.quizzes.length} ข้อ</p>
+                        <button onclick="restartQuiz()" class="btn-theme px-6 py-2.5 rounded-xl font-bold text-sm shadow-lg">
+                            <i class="fa-solid fa-rotate-right mr-1"></i> ทำแบบทดสอบอีกครั้ง
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            quizContainer.innerHTML = `
+                <div class="flex items-center justify-between text-xs text-amber-300 font-semibold mb-4">
+                    <span>คำถามข้อที่ ${APP_STATE.currentQuizIndex + 1} / ${APP_STATE.quizzes.length}</span>
+                    <div class="flex items-center gap-2">
+                        <span>คะแนนปัจจุบัน: ${APP_STATE.quizScore}</span>
+                        ${APP_STATE.isAdmin ? `
+                            <button onclick="openEditQuizModal(${APP_STATE.currentQuizIndex})" class="bg-amber-500 text-slate-900 px-2 py-0.5 rounded font-bold hover:bg-amber-400"><i class="fa-solid fa-pen"></i> แก้ไขข้อนี้</button>
+                            <button onclick="deleteQuiz(${APP_STATE.currentQuizIndex})" class="bg-red-600 text-white px-2 py-0.5 rounded font-bold hover:bg-red-500"><i class="fa-solid fa-trash"></i> ลบข้อนี้</button>
+                        ` : ''}
+                    </div>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold text-white mb-6 leading-relaxed">${escapeHtml(q.question)}</h3>
+                
+                <div class="space-y-3">
+                    ${q.options.map((opt, i) => `
+                        <button onclick="submitAnswer(${i})" class="w-full text-left p-4 rounded-xl bg-slate-700/60 hover:bg-slate-700 border border-slate-600 text-sm font-medium transition text-gray-100 flex items-center justify-between group">
+                            <span>${i + 1}. ${escapeHtml(opt)}</span>
+                            <i class="fa-regular fa-circle text-gray-400 group-hover:text-amber-300"></i>
+                        </button>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function submitAnswer(idx) {
+            const q = APP_STATE.quizzes[APP_STATE.currentQuizIndex];
+            if (idx === q.correct) {
+                APP_STATE.quizScore++;
+                showToast("ถูกต้อง! คุณได้รับ 1 คะแนน");
+            } else {
+                showToast("ยังไม่ถูกต้อง ลองศึกษาทบทวนดูนะ", "error");
+            }
+
+            APP_STATE.currentQuizIndex++;
+            renderQuiz();
+        }
+
+        function restartQuiz() {
+            APP_STATE.currentQuizIndex = 0;
+            APP_STATE.quizScore = 0;
+            renderQuiz();
+        }
+
+        function openAddQuizModal() {
+            document.getElementById('quizModalTitle').innerText = "เพิ่มข้อสอบใหม่";
+            document.getElementById('editQuizIndex').value = "";
+            document.getElementById('editQuizQuestion').value = "";
+            document.getElementById('editQuizOpt0').value = "";
+            document.getElementById('editQuizOpt1').value = "";
+            document.getElementById('editQuizOpt2').value = "";
+            document.getElementById('editQuizOpt3').value = "";
+            document.getElementById('editQuizCorrect').value = "0";
+            openModal('editQuizModal');
+        }
+
+        function openEditQuizModal(idx) {
+            const q = APP_STATE.quizzes[idx];
+            if (!q) return;
+            document.getElementById('quizModalTitle').innerText = "แก้ไขแบบทดสอบ";
+            document.getElementById('editQuizIndex').value = idx;
+            document.getElementById('editQuizQuestion').value = q.question;
+            document.getElementById('editQuizOpt0').value = q.options[0] || '';
+            document.getElementById('editQuizOpt1').value = q.options[1] || '';
+            document.getElementById('editQuizOpt2').value = q.options[2] || '';
+            document.getElementById('editQuizOpt3').value = q.options[3] || '';
+            document.getElementById('editQuizCorrect').value = q.correct;
+            openModal('editQuizModal');
+        }
+
+        function saveQuiz(e) {
+            e.preventDefault();
+            const idx = document.getElementById('editQuizIndex').value;
+            const question = document.getElementById('editQuizQuestion').value.trim();
+            const options = [
+                document.getElementById('editQuizOpt0').value.trim(),
+                document.getElementById('editQuizOpt1').value.trim(),
+                document.getElementById('editQuizOpt2').value.trim(),
+                document.getElementById('editQuizOpt3').value.trim()
+            ];
+            const correct = parseInt(document.getElementById('editQuizCorrect').value, 10);
+
+            if (idx !== "") {
+                APP_STATE.quizzes[idx] = { question, options, correct };
+            } else {
+                APP_STATE.quizzes.push({ question, options, correct });
+            }
+
+            localStorage.setItem('edulearn_quizzes', JSON.stringify(APP_STATE.quizzes));
+            renderQuiz();
+            updateStatsCounters();
+            closeModal('editQuizModal');
+            onAdminContentChanged("บันทึกแบบทดสอบเรียบร้อย!");
+        }
+
+        function deleteQuiz(idx) {
+            if (!APP_STATE.isAdmin) return;
+            APP_STATE.quizzes.splice(idx, 1);
+            localStorage.setItem('edulearn_quizzes', JSON.stringify(APP_STATE.quizzes));
+            APP_STATE.currentQuizIndex = 0;
+            renderQuiz();
+            updateStatsCounters();
+            onAdminContentChanged("ลบข้อสอบเรียบร้อย");
+        }
+
+        function renderChats() {
+            const chatBox = document.getElementById('chatMessageList');
+            chatBox.innerHTML = '';
+            
+            document.getElementById('chatCountBadge').innerText = `${APP_STATE.chats.length} ข้อความ`;
+
+            APP_STATE.chats.forEach(c => {
+                const isMe = APP_STATE.currentUser && c.user.startsWith(APP_STATE.currentUser);
+                const userAvatar = getUserAvatar(c.user);
+                const wrapper = document.createElement('div');
+                wrapper.className = `flex gap-3 ${isMe ? 'flex-row-reverse' : 'flex-row'}`;
+                
+                wrapper.innerHTML = `
+                    <img src="${userAvatar}" class="w-9 h-9 rounded-full object-cover border-2 ${c.isTeacher ? 'border-amber-400' : 'border-theme-500'} flex-shrink-0 shadow">
+                    <div class="max-w-[80%]">
+                        <div class="flex items-center gap-2 mb-1 ${isMe ? 'justify-end' : ''}">
+                            <span class="text-xs font-bold ${c.isTeacher ? 'text-amber-700' : 'text-gray-700'}">${escapeHtml(c.user)}</span>
+                            <span class="text-[10px] text-gray-400">${c.time}</span>
+                        </div>
+                        <div class="p-3 rounded-2xl text-xs sm:text-sm leading-relaxed ${isMe ? 'bg-theme-600 text-white rounded-tr-none' : 'bg-white text-gray-800 rounded-tl-none border border-gray-200 shadow-sm'}">
+                            ${escapeHtml(c.text)}
+                        </div>
+                    </div>
+                `;
+                chatBox.appendChild(wrapper);
+            });
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function handleSendChat(e) {
+            e.preventDefault();
+            const input = document.getElementById('chatInput');
+            const txt = input.value.trim();
+            if (!txt) return;
+
+            const user = APP_STATE.currentUser || (APP_STATE.isAdmin ? APP_STATE.adminUser : "ผู้เข้าชมทั่วไป");
+            const now = new Date();
+            const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')} น.`;
+
+            APP_STATE.chats.push({
+                id: Date.now(),
+                user: user,
+                text: txt,
+                time: timeStr,
+                isTeacher: APP_STATE.isAdmin
+            });
+
+            localStorage.setItem('edulearn_chats', JSON.stringify(APP_STATE.chats));
+            renderChats();
+            input.value = '';
+        }
+
+        function handleWorkSubmit(e) {
+            e.preventDefault();
+            const student = document.getElementById('subStudentName').value.trim();
+            const classInfo = document.getElementById('subClass').value.trim();
+            const title = document.getElementById('subAssignmentTitle').value;
+            const fileUrl = document.getElementById('subFileUrl').value.trim();
+            const note = document.getElementById('subNote').value.trim();
+
+            const now = new Date();
+            const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')} น.`;
+
+            const submissionData = { student, classInfo, title, fileUrl, note, time: timeStr };
+
+            APP_STATE.submissions.unshift(submissionData);
+            localStorage.setItem('edulearn_submissions', JSON.stringify(APP_STATE.submissions));
+            renderSubmissions();
+            updateStatsCounters();
+
+            if (APP_STATE.webhookUrl) {
+                fetch(APP_STATE.webhookUrl, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(submissionData)
+                }).catch(err => console.log('Google Sheet sync error:', err));
+            }
+
+            document.getElementById('submissionForm').reset();
+            showToast("ส่งงานสำเร็จ! ข้อมูลถูกจัดเก็บส่งไปยัง Google Drive & Docs เรียบร้อยแล้ว");
+        }
+
+        function renderSubmissions() {
+            const list = document.getElementById('submissionList');
+            const counter = document.getElementById('submissionCounter');
+            list.innerHTML = '';
+            
+            counter.innerText = `${APP_STATE.submissions.length} รายการ`;
+
+            if (APP_STATE.submissions.length === 0) {
+                list.innerHTML = `<p class="text-xs text-gray-400 text-center py-4">ยังไม่มีประวัติการส่งงาน</p>`;
+                return;
+            }
+
+            APP_STATE.submissions.slice(0, 5).forEach(sub => {
+                const item = document.createElement('div');
+                item.className = "p-3 rounded-xl bg-gray-50 border border-gray-200 text-xs flex items-center justify-between";
+                item.innerHTML = `
+                    <div class="truncate mr-2">
+                        <div class="font-bold text-gray-800 truncate">${escapeHtml(sub.student)} (${escapeHtml(sub.classInfo)})</div>
+                        <div class="text-gray-500 truncate mt-0.5">${escapeHtml(sub.title)}</div>
+                    </div>
+                    <a href="${escapeHtml(sub.fileUrl)}" target="_blank" class="text-theme font-bold hover:underline flex-shrink-0 flex items-center gap-1">
+                        <i class="fa-brands fa-google-drive"></i> เปิดงาน
+                    </a>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function saveWebhookUrl() {
+            const url = document.getElementById('webhookUrlInput').value.trim();
+            APP_STATE.webhookUrl = url;
+            localStorage.setItem('edulearn_webhook', url);
+            closeModal('googleSheetModal');
+            showToast("บันทึกการตั้งค่า Google Sheet Webhook เรียบร้อย");
+        }
+
+        function updateStatsCounters() {
+            document.getElementById('statCoursesCount').innerText = `${APP_STATE.courses.length}`;
+            document.getElementById('statMediaCount').innerText = `${APP_STATE.media.length}`;
+            document.getElementById('statQuizzesCount').innerText = `${APP_STATE.quizzes.length}`;
+            document.getElementById('statSubmissionsCount').innerText = `${APP_STATE.submissions.length}`;
+        }
+
+        function loadGitHubSettings() {
+            document.getElementById('ghTokenInput').value = localStorage.getItem('github_token') || '';
+            document.getElementById('ghOwnerInput').value = localStorage.getItem('github_owner') || '';
+            document.getElementById('ghRepoInput').value = localStorage.getItem('github_repo') || '';
+            document.getElementById('ghPathInput').value = localStorage.getItem('github_path') || 'index.html';
+            document.getElementById('ghBranchInput').value = localStorage.getItem('github_branch') || 'main';
+        }
+
+        function saveGitHubSettings(e) {
+            e.preventDefault();
+            const token = document.getElementById('ghTokenInput').value.trim();
+            const owner = document.getElementById('ghOwnerInput').value.trim();
+            const repo = document.getElementById('ghRepoInput').value.trim();
+            const path = document.getElementById('ghPathInput').value.trim() || 'index.html';
+            const branch = document.getElementById('ghBranchInput').value.trim() || 'main';
+
+            localStorage.setItem('github_token', token);
+            localStorage.setItem('github_owner', owner);
+            localStorage.setItem('github_repo', repo);
+            localStorage.setItem('github_path', path);
+            localStorage.setItem('github_branch', branch);
+
+            closeModal('githubModal');
+            showToast("บันทึกการตั้งค่า GitHub PAT Token เรียบร้อยแล้ว!");
+        }
+
+        function getExportHtml() {
+            // Temporarily reset Admin mode and User state for static HTML generation
+            const wasAdmin = APP_STATE.isAdmin;
+            const originalUser = APP_STATE.currentUser;
+
+            APP_STATE.isAdmin = false;
+            APP_STATE.currentUser = null;
+
+            renderAuthHeader();
+            renderCourses();
+            renderPathways();
+            renderMedia();
+            renderQuiz();
+
+            let rawHtml = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+
+            // Restore live session state back in memory
+            APP_STATE.isAdmin = wasAdmin;
+            APP_STATE.currentUser = originalUser;
+
+            renderAuthHeader();
+            renderCourses();
+            renderPathways();
+            renderMedia();
+            renderQuiz();
+
+            // Craft clean student export state JSON
+            const exportState = JSON.parse(JSON.stringify(APP_STATE));
+            exportState.isAdmin = false;
+            exportState.currentUser = null;
+
+            const stateJson = JSON.stringify(exportState, null, 4);
+            const regex = new RegExp('/\\* INITIAL_APP_STATE_START \\*/[\\s\\S]*?/\\* INITIAL_APP_STATE_END \\*/');
+            const replacement = '/* INITIAL_APP_STATE_START */\n        const APP_STATE = ' + stateJson + ';\n        /* INITIAL_APP_STATE_END */';
+            
+            if (regex.test(rawHtml)) {
+                rawHtml = rawHtml.replace(regex, () => replacement);
+            }
+            return rawHtml;
+        }
+
+        async function pushToGitHub() {
+            const token = localStorage.getItem('github_token') || '';
+            const owner = localStorage.getItem('github_owner') || '';
+            const repo = localStorage.getItem('github_repo') || '';
+            const path = localStorage.getItem('github_path') || 'index.html';
+            const branch = localStorage.getItem('github_branch') || 'main';
+
+            if (!token || !owner || !repo) {
+                openModal('githubModal');
+                showToast("กรุณาตั้งค่า GitHub Token, Username และ Repo ก่อนส่งไฟล์", "error");
+                return;
+            }
+
+            showToast("กำลังเตรียมไฟล์และส่งไปยัง GitHub...", "info");
+
+            try {
+                const fileContent = getExportHtml();
+                const encoder = new TextEncoder();
+                const data = encoder.encode(fileContent);
+                let binary = '';
+                for (let i = 0; i < data.length; i++) {
+                    binary += String.fromCharCode(data[i]);
+                }
+                const contentBase64 = btoa(binary);
+
+                const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+
+                let sha = null;
+                try {
+                    const getRes = await fetch(`${apiUrl}?ref=${branch}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Accept': 'application/vnd.github.v3+json'
+                        }
+                    });
+                    if (getRes.ok) {
+                        const getData = await getRes.json();
+                        sha = getData.sha;
+                    }
+                } catch (e) {
+                    console.log("File is new or fetch error:", e);
+                }
+
+                const bodyData = {
+                    message: `Auto Update index.html via EduLearn Hub Admin [${new Date().toLocaleString('th-TH')}]`,
+                    content: contentBase64,
+                    branch: branch
+                };
+                if (sha) bodyData.sha = sha;
+
+                const putRes = await fetch(apiUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/vnd.github.v3+json'
+                    },
+                    body: JSON.stringify(bodyData)
+                });
+
+                if (putRes.ok) {
+                    showToast("อัปโหลดไฟล์ไปยัง GitHub สำเร็จเรียบร้อยแล้ว! 🚀");
+                } else {
+                    const errData = await putRes.json();
+                    showToast(`อัปโหลดล้มเหลว: ${errData.message || 'ตรวจสอบ Token หรือสิทธิ์'}`, "error");
+                }
+            } catch (err) {
+                console.error(err);
+                showToast(`เกิดข้อผิดพลาดในการเชื่อมต่อ: ${err.message}`, "error");
+            }
+        }
+
+        function onAdminContentChanged(msg) {
+            showToast(msg);
+            const token = localStorage.getItem('github_token');
+            if (token) {
+                setTimeout(() => {
+                    pushToGitHub();
+                }, 800);
+            }
+        }
+
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const msgEl = document.getElementById('toastMessage');
+            const icon = document.getElementById('toastIcon');
+
+            msgEl.innerText = message;
+            if (type === 'error') {
+                icon.className = 'fa-solid fa-circle-xmark text-red-400 text-xl';
+            } else if (type === 'info') {
+                icon.className = 'fa-solid fa-circle-info text-amber-400 text-xl';
+            } else {
+                icon.className = 'fa-solid fa-circle-check text-emerald-400 text-xl';
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>
