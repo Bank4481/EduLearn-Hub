@@ -1710,7 +1710,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
     </div>
 
     <!-- MODAL 11: Google Sheet Webhook Setup -->
-    <div id="googleSheetModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div id="googleSheetModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 hidden">
         <div class="bg-white rounded-3xl max-w-xl w-full p-6 shadow-2xl">
             <div class="flex items-center justify-between pb-4 border-b border-gray-200 mb-4">
                 <h3 class="text-lg font-bold text-gray-900 flex items-center gap-2">
@@ -1785,8 +1785,8 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
     <!-- Notification Toast Box -->
     <div id="toast" class="fixed bottom-5 right-5 z-50 transform transition-all duration-300 pointer-events-none translate-y-20 opacity-0">
         <div class="glass-card bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-700">
-            <i class="fa-solid fa-circle-check text-emerald-400 text-xl" id="toastIcon"></i>
-            <span class="text-sm font-medium" id="toastMessage">บันทึกการตั้งค่า Google Drive &amp; Docs เรียบร้อยแล้ว!</span>
+            <i class="fa-solid fa-circle-exclamation text-red-400 text-xl" id="toastIcon"></i>
+            <span class="text-sm font-medium" id="toastMessage">อัปโหลดล้มเหลว: index.html does not match 7347289ccf7522442e52ae1ba5c1a0d9bce4bc1d</span>
         </div>
     </div>
 
@@ -1845,7 +1845,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
     "currentTheme": "orange",
     "googleDriveUrl": "https://drive.google.com/drive/folders/1qndE_lftlWIXM5zukiWENL9Uuo7BNz9k?usp=sharing",
     "googleDocsUrl": "https://docs.google.com",
-    "webhookUrl": "",
+    "webhookUrl": "https://docs.google.com/spreadsheets/d/1WlyQiZCxffKaNqiYMG-EXRc7PyT64PlA265LCGCeqgk/edit?usp=sharing",
     "currentQuizIndex": 0,
     "quizScore": 0,
     "registeredUsers": {
